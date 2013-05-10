@@ -1,0 +1,15 @@
+\begin{thebibliography}{1}
+
+\bibitem{godfrey08}
+Brighten Godfrey.
+\newblock Historical computing research trends.
+\newblock Outrageous Opinion Session, Sigcomm 2008.
+\newblock
+  \url{http://www.cs.berkeley.edu/~pbg/sigcomm08-outrageous_opinion.pdf}.
+
+\bibitem{lamport78time}
+Leslie Lamport.
+\newblock Time, clocks, and the ordering of events in a distributed system.
+\newblock {\em Commun. ACM}, 21(7):558--565, 1978.
+
+\end{thebibliography}
