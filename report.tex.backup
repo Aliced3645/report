@@ -14,60 +14,28 @@
 \maketitle
 
 \begin{abstract}
-This is a report of the datacenter 
+In this report we present the auction-based marketing system we build for data center applications.
+Motivited by similar mechanism of auctions for resource in other computer systems, we aim to 
+let users bid their network resouces, mainly bandwidth and latency of their desired flows. Different from existing 
+bidding systems like Google's marketing system\cite{google}, our system is based on SDN network and utilizes the advantage
+of the central controller and global network information. 
+Another thing we focus on is the allocation algorithm for the auctioneer. We investigated some 
+algorithms and evaluated their performances. 
 \end{abstract}
 
 \section{Introduction}
-\label{sec:intro}
-This is a simple example file on how to write a report using LaTeX.
-Just use it as a base and replace the content. I put some examples of
-commonly used features, but there are many more. Generally, you learn
-these on demand. Examples include:
 
-\begin{itemize}
-\item Lists
-\item Tables
-\item Math text
-\end{itemize}
+\section{Related Work}
+\subsection{Data Center Markets}
+\subsection{Existing Pricing Mechanisms}
+\subsection{Software Defined Network}
+\subsubsection{OpenFlow}
+\subsubsection{Floodlight}
+\section{System Design and Algorithm}
 
-After you write your LaTeX source, you have to compile it, run
-BibTeX, and then compile twice again, to get all cross-references 
-right. I also included a Makefile to make that whole process easier.
-You just have to type \texttt{make} if you have your environment set.
-It should work on Linux, MacOS, and cygwin. If you are running 
-anything else, you should know how to set it up too.
+\section{Implementation}
 
-Some sample text. Paragraphs are created by blank lines in the source.
-Some sample text. Paragraphs are created by blank lines in the source.
-Some sample text. Paragraphs are created by blank lines in the source.
-Some sample text. Paragraphs are created by blank lines in the source.
-Some sample text. Paragraphs are created by blank lines in the source.
-
-Some sample text. Paragraphs are created by blank lines in the source.
-Some sample text. Paragraphs are created by blank lines in the source.
-Some sample text. Paragraphs are created by blank lines in the source.
-Some sample text. Paragraphs are created by blank lines in the source.
-Some sample text. Paragraphs are created by blank lines in the source.
-
-\section{Another Section}
-
-Another section. This one will have a figure. See
-Figure~\ref{fig:us-versus-them}. Each figure has a label, which must be
-defined \emph{after} the caption. Traditionally, people use
-\texttt{fig:...} for figure labels, \texttt{sec:...} for section
-labels, and \texttt{tab:...} for table labels. For example, this is a
-reference to Section~\ref{sec:intro}. 
-
-\begin{figure}
-\centering
-\includegraphics[width=0.7\textwidth]{usthem}
-\caption{Relative number of abstracts from the ACM Digital Library
-containing the word `us' versus the word 'them'. According
-to~\cite{godfrey08}, `they are winning, but we are gaining on Them'. }
-\label{fig:us-versus-them}
-\end{figure}
-
-\input{additional}
+\section{Evaluation}
 
 \section{Conclusions}
 
@@ -76,8 +44,18 @@ to learn. It almost certainly came with your Linux installation, and
 can be very easily installed in Cygwin and on the Mac (through the
 excellent MacTeX distribution).
 
-
 \bibliographystyle{plain}
-\bibliography{report}
+\begin{thebibliography}{99}
+ \bibitem{aws} Amazon Web Services: http://aws.amazon.com.
+ \bibitem{ec2} Amazon EC2 Pricing: http://aws.amazon.com/ec2/pricing.
+ \bibitem{spot} EC2 Spot Instances: http://aws.amazon.com/ec2/spot-instances.
+ \bibitem{google} Stokely, Murray, et al. "Using a market economy to provision compute resources across planet-wide clusters." Parallel \& Distributed Processing, 2009. IPDPS 2009. IEEE International Symposium on. IEEE, 2009.
+ \bibitem{combinatorial auction} Nisan, Noam. "Bidding and allocation in combinatorial auctions." Proceedings of the 2nd ACM conference on Electronic commerce. ACM, 2000.
+ \bibitem{ucsd} AuYoung, Alvin, et al. Practical market-based resource allocation. University of California, San Diego, 2010.
+ \bibitem{dartmouth} Bredin, Jonathan, David Kotz, and Daniela Rus. "Market-based resource control for mobile agents." Proceedings of the second international conference on Autonomous agents. ACM, 1998.
+ \bibitem{second price} Vickrey, William. "Counterspeculation, auctions, and competitive sealed tenders." The Journal of finance 16.1 (1961): 8-37.
+ \bibitem{clock1} Ausubel, Lawrence M., and Peter Cramton. "Auctioning many divisible goods." Journal of the European Economic Association 2.23 (2004): 480-493.
+ \bibitem{clock2} Cramton, Peter, and Lawrence M. Ausubel. "The clock-proxy auction: A practical combinatorial auction design." (2006): 115-138.
+\end{thebibliography}
 
 \end{document}
