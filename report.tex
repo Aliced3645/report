@@ -1,4 +1,4 @@
-\documentclass[11pt]{article}
+\documentclass[a4paper,11pt,twocolumn]{article}
 
 \usepackage{url}
 \usepackage[letterpaper,margin=1in]{geometry}
@@ -8,13 +8,13 @@
 
 \begin{document}
 
-\title{Datacenter Marketing System}
+\title{SDN$^{2}$: Marketing System for Datacenter Network Resource Allocation based on Software Defined Network}
 \author{Rui Zhou \and Shu Zhang}
 \date{Final Project - CSCI 2950-u - Spring 2013}
 \maketitle
 
 \begin{abstract}
-In this report we present the auction-based marketing system we build for datacenter applications.
+In this report we present MSDN, an auction-based \emph{M}arketing system we build for datacenter Network resource Allocation based on \emph{S}oftware \emph{D}efined \emph{N}etworks.
 Motivited by similar mechanism of auctions for resource in other computer systems, we aim to 
 let users bid their network resouces, mainly bandwidth and latency of their desired flows. Different from existing 
 bidding systems like Google's marketing system\cite{google}, our system is based on SDN network and utilizes the advantage
@@ -29,7 +29,7 @@ of the applicaton running on the datacenter. Since the network resource is limit
 datacenters for applications to bid resources comes to existence. With the core of auction, other marketing mechanisms have been built for public or 
 private datacenters, such as AWS\cite{aws} or internal datacenters for large companies such as Google and Microsoft. 
 
-\section{Related Work}
+\section{BackGround}
 In this section, we investigate exisiting paradigms of data centers (mainly private datacenters and public datacenters) and their marketing and 
 pricing methods. Also, we introduce the exisitng techniques of SDN which is the base of our system.
 \subsection{Datacenter Markets}
@@ -78,19 +78,252 @@ when waiting for gaining the resource. So there should be another `buy-it-now' p
 pricing short-circuits the price discovery process of the auction, and the price is determined by a historical function which takes the historical auction/buy-it-now
 prices for parameters.
 
-\subsubsection{OpenFlow}
-\subsubsection{Floodlight}
+
 
 \subsection{Software Defined Network}
 \subsubsection{OpenFlow}
+OpenFlow is one of the most popular and muture specifications for software defied network curretly existing. It was origianlly propoesed by [] and now is under actively development by the Stanford Opeflow team and a very active cu=ommunity.
+OpenFlow primarily defines the control plane of the network. The Novel idea is that one or more cerntral controllers are incharge of setting upp forwarding rules in switches at the granuarity of flows. A flow could be any set of packets that share some particular characteristics,ie,source IP.Packets matching a  flow will be delivered by the switch accordind g to the flow rules, packets brlongs to no flows will be forwarded to switches, The switche then will analyze the packet, determine the forarding rules of this and similar pakcets.
+OpenFlow does not reuire major changes to existing switches. Large portios of existing switches ca support OpenFlow with proper firmware updates, and most of the swicth vendors are now adding support for OPenFlow as a standard functionality.
 \subsubsection{Floodlight}
+With OpenFlow as the foundation, serveral Openflow Controllers were deigned and implmented, including . Floodlight was orignally developed by and has become one of most supported and widely used inboth academia and industrial. Flooldlight is written in JAVA. 
+features
+
+
+
+\section{CONTRIBUTION}
+In this section, we present the contribution of our work.
+% what is new ?
+%sdn
+\subsection{Floodlight and SDN based}
+Our work is mounted on Floodlight as its basement. With relatively mutual developed system, Flood light and
+our work can be utilized in real world with few set ups.
+
+
+%fair on user/ flow / 
+% resource utilization
+
+\subsection{Fairness and traffic Control }
+Bob Briscoe in his paper\cite{bob} has bluntly pointed out that many fairness based on flows are pointless. He argues that
+ flows are simply not the right
+entities to provide fairness to. We believe in his argument, but it is also arguable that sometimes fairness over flows
+can have its usages. Algorithms such as max-min flow generally works well and many people are used to it. In our
+work, the total amount of virtual currency/cash  available in our market mechanism resource allocation system at a 
+particular time period is proportional to the existing resources available in that  particular period ,by the 
+factor of $\alpha$. The total currency/cash is equally distributed to end entities(users or flows) at the beginning of that
+ time period. This design will automatically generates fairness among all the users(or flows) and make sure the 
+total requests from the users unlikely will  burst too much and exceed the ability of the system. 
+The factor $\alpha$ can be 
+adjusted over time to reach the best utilization of available resources at each time period. The total traffic 
+in  our resource allocation system can be treated as one giant flow with large weight, thus min-max flow can be used
+among this  giant flow and others to achieve the maximum usage for all time over the entire system. Weights between users and flows can be 
+maintained by adjusting the distribution of virtual cash. Every user has equal amount of virtual cash in a evenly 
+weighted system and the properties of strategy-proof and envy free are automatically granted.
+
+
+%speed -> search
+\subsection{Solve by Searching}
+Different from allocation for computing resources, the allocation for Network resources requires a much high 
+decision speed. In \cite{Sai}, Sai proposed the pattern for agents to keep bidding and potentially face the failure. This works in computation and storage allocation but is
+probably not the best strategy in the design of our system. In our work, we had a close look at ideas in logical programming
+and tries to seize the best out of it. Our system primarily operates as tree search in a solution space composed
+with users' bids are our search are target to optimize a ``profit'' of certain kinds. There isn't much bidding failures
+in our system. The amount of virtual cash a bidder spends mainly affect the priority of their resource allocation. 
+
+
+\subsection{Objective-Oriented Allocation}
+Our system supports multiple optimizing modes including : ``Short job first''. ``Maximun profits'', ``best utilization'',
+``most met deadlines'' and so on.
+
 
 \section{System Design and Algorithm}
-\subsection{Precondition}
+\subsection{Criteria of the System}
+% requirements from five star paper
+In [Dominant Resource Fairness: Fair Allocation of Multiple Resource Types], Ali Ghodsi et al'\cite{ali} discussed Dominant Resource Fairness towards 
+Fair Allocation of Multiple Resource Types regarding the computation and storage resources. In their discussion several cafeterias
+are used to judge one allocation strategy. In this paper, we will adopt the cafeterias but treat the word  word ``cluster'' as ``Network resources'':
 
-\section{Implementation}
+\begin{description}
+
+\item 
+[Sharing Incentive:]
+Each user should be better off
+sharing the cluster, than exclusively using her own
+partition of the cluster. Consider a cluster with identical nodes and n users. Then a user should not be
+able to allocate more tasks in a cluster partition consisting of $\frac{1}{n}$ of all resources.
+
+\item 
+[Strategy-proofness:]
+Users should not be able to
+benefit by lying about their resource demands. This
+provides incentive compatibility, as a user cannot
+improve her allocation by lying.
+
+\item 
+[Envy freeness:]
+A user should not prefer the allocation of another user. This property embodies the
+notion of fairness [13, 30].
+
+\item 
+[Pareto efficiency:]
+It should not be possible to increase the allocation of a user without decreasing
+the allocation of at least another user. This property is important as it leads to maximizing system
+utilization subject to satisfying the other properties.
+
+\end{description}
+
+
+and In addition  four
+other nice-to-have properties:
+
+\begin{description}
+
+\item 
+[Single resource fairness:] 
+For a single resource, the
+solution should reduce to max-min fairness.
+\item 
+[Bottleneck fairness:]
+ If there is one resource that is
+percent-wise demanded most of by every user, then
+the solution should reduce to max-min fairness for
+that resource.
+\item 
+[Population monotonicity:]
+When a user leaves the
+system and relinquishes her resources, none of the
+allocations of the remaining users should decrease.
+\item 
+[Resource monotonicity:]
+If more resources are added
+to the system, none of the.
+\end{description}
+
+DRF are able to provide all of the above except for the last \textbf{Resource Monotonicity}.
+In fact Ali Ghodsi et al' also gives the follow theorem:
+\newtheorem{thm}{Theorem}
+\begin{thm}
+ No allocation policy that satisfies the sharing incentive and Pareto efficiency properties can also
+satisfy resource monotonicity.
+\end{thm}
+
+In this paper, we will show that our work can satisfy no less than DRF. In fact, because of the design of our work, several of 
+those properties are guaranteed without the need for special care and we can   potentially tackles all of the
+properties by in several particular scenarios, which the theorem may not apply due to the design level advantage of our work.
+
+
+
+\subsection{Pre-Assumption}
+
+
+\subsection{Architecture}
+In this section we introduce the design of our system, and also points out our solution to the cafeterias.
+
+
+\subsubsection{Marketing Manager}
+
+\subsubsection{User side bidding agent}
+
+
+
+\section{System Implementation}
 
 \section{Evaluation}
+
+
+
+\section{DISCUSSION AND FUTURE WORK}
+
+Our system is a good starting prototype, the novel idea was there but lots of potential components are remaining to be 
+further developed and researched. Some particular interesting potential future work including :
+\begin{enumerate}
+
+\item Stability Issues
+A significant unsatisfactory we have so far is the stability issue when we test on our Mininet testbed. The stability issues happens in multiple forms.  One clear understood common reason the system fails is when the user started to bid before the internal controller configure everything it needs. The coming in bidding packet could result in exceptions in various place of the system, depending the stage the system is currently within intiliazation phase. Besides the obvious easy to fix issues, we sometimes experience random time out of virtual switches simulated by mininet. A very common issue is that, floodlight controller would suddenly timeout the netty channel through which a switch is connected, due to read time out. Almost instantly after the switch was timed out and disconnected, the controller will detect a new switch in mininet, with different real machine port number. This issue happens occasionally, its reason is unknown yet and could resides in at least one of floodlight, netty framwork, mininet  or the reference swicth implementation.
+
+\item More Tests and immigrate to  real world test bed\\
+Because of the limit of time and the delay caused by bugs hard to trace(ie, the switch loss bug mentioned aforehead), we did not have time to test our system with real switches. It is definitely an item into our todo list and needs to be done in the future.
+
+
+
+
+\item Support of Partial  Bidding Request \\
+In our current settings, users can make request without any requirements on Latency. The user could simply indicate that the latency is not important and the bidding agent  could translate as and Long.MAX\_VALUE to put into the request message. However, we have not provided a standard when the client only have request for latency but not bandwidth. As a bandwidth of zero make no sense regardless of its associated latency, this problem may further redirected to be to help user determine their needs for bandwidth.
+
+
+
+\item  Request Translation\\
+Another very realistic request from users may be the following. Most of the users are not able to provide an information detailed enough to assemble a bid request for our system. For example, user Bob may only want to download this one Gigabtyte movie tonight so he could watch it tomorrow, thus the latency is not so relevant and the shape of his allocation is elastic and dividable. Or Alice may want to schedule a phone call  after five minutes and does not really want to specify an end time for it, as she does not know in advance. Her request might be composed of an minimun latency, an minimum bandwidth in an extendable session. All those real world requests need to be translated by our bidding agent to fits in our bidding system, and our bidding system could extend its rules to fit more complex and realistic scenarios. 
+
+
+\item Request Predication\\
+Yet the biggest gap between our system to widely pratical usage is that most of the regular users may not want to make a bid, Either not able to or no bother to. Thus a great break through that will benefit our system greatly would be enable our bidding agent to bid for the users by predicting the potential requests.  Prediction of user requests is solo a much harder problem that people are trying to tackle(example ref paper), and its advance could benefit not only our datacenter marketing system but also many other existing systems. But as aforementioned, it is generally very hard to achieve in current state of art.
+
+\end{enumerate}
+ 
+
+
+
+\section{Related Work}
+ market is needed in resource allocation,too
+Data-centers have rapidly evolved to become the dominating server style in almost
+any modern Internet based organizations. As the amount of computation and associated
+network  traffic keeps increasing, the needs for efficient and fair  allocation in  Network resources
+has also becomes a important topic. There exist enormous number of devices with all 
+kinds of different hardware and software among all the data-centers. Different processes and users could
+have different requests and requirements. A Hadoop cluster running Map-reduce computations 
+may requires great bandwidth.
+A web search engine clusters such as Google may want to response to a request 
+within a relatively rapid time. All of the needs are to be solved with appropriate network resources
+allocation.
+
+
+
+
+% enormous number  of papers have discussed the resource allocation in clusters,
+% regarding the computation resource, few on NETwork 
+To eliminating possible confusion, allocating \textbf{computing and storage} resources such as Cpus and Memory
+ in clusters and date-centers has been a popular topic widely discussed. Researchers have proposed and implemented
+various algorithms to achieve fairness and efficiency among different entities. 
+%{eaxmple papers} 
+Rajkumar Buyya el at' \cite{Rajkumar} proposed architecture for market-oriented allocation of 
+resources within Clouds that encompass both customer-driven service management 
+and computational risk management to sustain SLA-oriented resource allocation. 
+Artur   Czumaj el at'\cite{Artur} proposed  the first thorough theoretical study of the
+price of selfish routing in server farms for general cost function, giving the hypothesis that 
+distributed entities in data-centers are selfishly motivated.  
+Ali Ghodsi el at\cite{Ali} presented fair allocation regarding dominant resources of multiple types
+in a data center clusters.
+Sai Rahul Reddy P\cite{Sai} in his Master's thesis proposed combined time and budget optimized auction 
+algorithms in grid computing. 
+However, there exists very few research focusing on the allocation
+of \textbf{network} resources. We believe the allocation on \textbf{network} resources such as guaranteed bandwidth and 
+jitters are as important as the allocation of computing and memory resources. Computation and storage are not free
+thus are entitled to allocation based on market mechanism, so is network resources. This is actually intuitive 
+and commonly accepted patterns in real life. Phone carries would sell you a phone for very cheap price and make 
+benefits from cellular services, this is a typical example in which the importance of allocation of network resource
+ exceed allocation of computation and storage. In data centers, inappropriate abusing of network resources can results
+in the failure of the whole system. It has noticed by network administrators that naively running TCP
+between hosts can leads to huge overhead on lost packets. Domain specific algorithms like DCTCP\cite{Mohammad} are proposed and applied
+in data-centers to effectively avoid collapse and keep traffic moving. But a more agile control was still very hard
+to reach due to the distributed nature of inter connected systems, which lacks of a central controller with
+a overview for the entire network and the needs of each entities are not really be collected and analyzed to form a strategy. The entire network also do not seek to optimize anything in general.
+It would be great if we can have a central view of the network which contact with each participating hosts in the network and allocate resources to them efficiently. Note that
+allocation of network resources often requires orders of  magnitude faster than allocation resources in Map-reduce style 
+systems due to the fast nature of network transmission.     
+
+
+% software defined network and participatory network , a central view and participants
+While the data-centers technology evolves rapidly, \textbf{Software Defined Network (SDN)} has also been proposed as a
+stunning idea. By separating the control panel and the data panel, SDN   abstracts a supported network to be a networking system, which
+offers a central view of the networks as a graph and provides a central controller based on flows.
+Openflow is a dominating protocol used in SDN based Network systems which defines what is analog to the lower level API in an operating systems.
+And high level Networking systems  such as NOX\cite{nox} and Floodlight\cite{floodlight}, and Nettle\cite{nettle} have been developed based on Openflow. SDN and
+Network systems has been actively developed in many universities. Companies such as Big Switch and JUNIPER have long 
+started to build SDN supported switches. It is believed that the future of network belongs to SDN. in this paper, we also take SDN as the approach towards the effective allocation of Network resources in data-centers. Recently Andrew et al' proposed 	\textbf{Participatory Networking(PNAE)}\cite{andrew}, 
+which focuses on the collection of participating entities.  Pane provides serves    analog to the system calls to networking systems, which 
+allow the  participating entities to provides hints to network systems and make changes to benefit their needs within allowed privileges.
+PANE' structure  nicely forms the base of our allocation mechanism. 
 
 \section{Conclusions}
 
@@ -98,6 +331,9 @@ It should be easy to write your report in LaTeX, and it's a great tool
 to learn. It almost certainly came with your Linux installation, and
 can be very easily installed in Cygwin and on the Mac (through the
 excellent MacTeX distribution).
+
+
+\section{Acknowledgment}
 
 \bibliographystyle{plain}
 \begin{thebibliography}{99}
