@@ -24,6 +24,10 @@ algorithms and evaluated their performances.
 \end{abstract}
 
 \section{Introduction}
+Resource allocation is an important topic in system related area, especially in data center where network resources heavily influence the performance 
+of the applicaton running on the datacenter. Since the network resource is limited and application expense is infinite, an idea of launching auctions on
+datacenters for applications to bid resources comes to existence. With the core of auction, other marketing mechanisms have been built for public or 
+private datacenters, such as AWS\cite{aws} or internal datacenters for large companies such as Google and Microsoft. 
 
 \section{Related Work}
 In this section, we investigate exisiting paradigms of data centers (mainly private datacenters and public datacenters) and their marketing and 
