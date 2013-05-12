@@ -39,7 +39,17 @@ reach the goal of real-time allocation. The general work flow is shown in figure
 The general flow of each round of bidding starts from the bidders. Bidders first recognize their flow requirements, for example, they need to buy a flow 
 from machine A to machine B in the network with a certain amount of data to transfer, with the hope of minimum bandwidth and latency (QoS) guarantees in 
 a certain time period. After confirming these requiremetns, bidders send bidding requests to the auctioneer. The auctioneer collects requests for this 
-round and wait for the bidding clock to alert, saying it is time to calculate the allocation. By using specific allocation algorithm, we 
+round and wait for the bidding clock to alert, saying it is time to calculate the allocation. By using specific allocation algorithm, the auctioneer could
+get a boolean result for each bidder's request and send the feedback to the bidders, and then a new round starts.
+
+Our goals for this project are, first to build a workable system running the auction and doing allocation in real time, secondly to provision a 
+protocol (a standard interface) for all parties wishing to use the system to follow so as to communicate using the protocol, and lastly to investigate
+algorithms to allocation resources basing on requests, for different goals. 
+
+In section 2 we investigate some existing datacenter markets and their pricing machanisms. In sections 3 we conclude the contribution of our work. 
+In section 4 the design and algorithms of the system are discussed and in the implementation is introduced in sectin 5. In section 6 we do some 
+experiments and evaluation on the outcoming products. Since our system is still in the first version, in section 7 we have identified some extensible
+work which would be done in the future. And in section 8 we introduce some related work.
 
 \begin{figure}[ht!]
 \centering
@@ -236,7 +246,11 @@ the we present money as a LONG type of value. Secondly, we don't care about wher
 some existing systems like \cite{ucsd}, all bidders are allocated money at first and then their wealth are adjusted by the bank profit and 
 social welfare mechanism, our scenario does not have an `invisible hand` which proforms as a government. Thirdly, our system only works on 
 networks with full deployment of SDN networks. Currently the sysetm does not support networks with multiple islands, some of which are 
-OpenFlow enabled while others are not. The final major assumption we make is that the working controller never goes down. Since we store 
+OpenFlow enabled while others are not. Fourthly, we only constrain users to bid for the machine they reside. 
+So if a user in using a machine, he could only bid for flows starting from the using machine. Although supporting
+users to bid for other machines are not hard to achieve, we just want to limit the rights the bidders could hold in the network. Another thing 
+is that the bidder coud only bid for the future. If it bids for the past, the time will be invalid.
+The final major assumption we make is that the working controller never goes down. Since we store 
 information in main memory, if the controller crashes, all bidding information maintained in the bidder will be lost, and without the 
 replication mechanism it will be a huge problem in our system. For now we temporarily put aside this consideration, and we plan to add
 the fail-over mechanism in the future. 
@@ -249,16 +263,78 @@ we rule a protocol of exchanging bidding messages which runs in the application 
 one is running inside the Floodlight controller, which acts as the auctioneer and the other is running on the client machine, 
 which performs as a bidding agent for the client. These two sides communicate using the bidding protocol. 
 
+\begin{figure}[ht!]
+\centering
+\includegraphics[width=90mm]{flow.jpg}
+\caption{Bidder-Auctioneer Interaction}
+\label{overflow}
+\end{figure}
+The interaction between bidders and auctioneers is shown in Figure 2. The bidder sends a bidding request in each round, currently, the 
+system needs the user to fill in required fields, including his name, his bidding value, the destination of the flow he wants to bid,
+the minimum transform rate he accepts (in the unit of MB/s), the latency he accepts for a packet to 
+traval from the source to the destination and the start and end time of the transimission. If 
+some fields are what the bidder does not care about, for example the rate, he could just set a special value such as 0 to that field. But 
+the start and end time must be set because the computation requires these two fields to be definitely set. Then the bidding request is set 
+to the auctioneer aka the bidding manager. Whenever the bidding manager gets a bidding request, it immediately verifies whether the latency
+could be satisfied. Because the bidding manager resides in the Floodlight controller with the global topology view of the network, so it could
+get all possible routes using the source and destination node. Then for all possible routes, it sends probe packets and count for the time the 
+packets use to pass all routes. The administrator could set how many times probe packets are sent for each verification in order to get an 
+average real-time latency for the route. If the users' required latency is smaller than the actual probed latency, we just send an bidding 
+feedback to the client saying the bid could not be satisfied because of the latency issue. Then for each bidding request, if one of its possible
+path could satisfy the latency requirement, these verified routes, along with the original bidding information, are packed together to get into
+the bidding request pool, waiting for the bidding round to come. Then for a certain period of time, the auction time arrives, all bidding requests
+in the pool are collected and calculated for their results. Then the results are sent to the bidders, which marks the end of the round.
+
+\begin{figure}[ht!]
+\centering
+\includegraphics[width=90mm]{architecture_controller.jpg}
+\caption{System Architecture}
+\label{overflow}
+\end{figure}
+
+The system architecture is shown in Figure 3. The user side sends and receives bidding messages formatting in the bidding protocol. These
+messages are transmitted via the SDN network. But the packets are in the data plane, and they are destined to the controller which resides
+in the control plane, so we utilize the feature of OpenFlow that if the switch does not know the destination IP of a packet or it has not a rule
+matching the head of the packet, the swtich will transfer the packet to the controller as a PACKET\_IN message, hence letting the packet go into
+the control plane. So the marketing controller is listening the packets as a module of the floodlight framework. If it gets a packet from a 
+special IP we make as a mark for the bidding message, the Marketing Controller will decode the message and packet it into a bidding request 
+object and pass it to the Marketing Manager which lays in to logic layer, then the Manager could do the thing described in the last paragraph.
+
+
 \subsubsection{The Biddig Protocol}
+There are generally four types of packets we use to pass mesages between bidders and auctioneer. In a typical datacenter, we assume the IP addresses 
+are highly clustered and irregular IPs does not appear. So first we assigns speicial IPs for the bidding protocol packets so that either side could 
+recoginze the special packets in the data plane. Then we serialize the packet informaiton in JSON. The reason we use JSON is that we want the protocol to
+be acoomodated to various machine and data presentation types. 
+
+The bidding request packet is used for the bidders to send their requests to the auctioneer. The bidder name is a String type in Java, and other 
+values are all Long (32 bits). Since we only allows users to bid 
+for a future period of time, the Start and End time fields in the packet must be positive values and they 
+are presented as the relative offset of time comparing with the current time. The speicial source IP for the bidding request packet is 1.2.3.4. The bidding result packet is sent by the auctioneer to the 
+bidders. The speicial source IP is 1.2.3.4 and the bidding result is a boolean type and the allowed rate is a allocated rate which must be no smaller than the 
+user's requested rate. The latency probe packet is used for the controller to probe the real-time latency between two nodes. The source and destination IP
+are set by the controller as the real IP of the two nodes (before sending the latency probe packets, the controller should establish rules on all
+switches on the path, using the two IP as matching fields, the out port for the last swtich is 6632 which directs the packet back to the controller).
+The Send Reminder Packet is used for reminding bidders to send their flows when their winning bidding time comes. The speicial source IP is 1.2.3.5. The 
+packet tells the controller where is the destination of the flow and the duration of this transmission. The reminding mechanism is facilited by the 
+timers so that the bidders don't need to record what they have won. The Marketing Manager records these information for the bidder and when the start time 
+of their winning bids arrives, the reminder packet is sent.
+
 \begin{figure}[ht!]
 \centering
 \includegraphics[width=90mm]{protocol.jpg}
 \caption{The bidding protocol}
 \label{overflow}
 \end{figure}
-There are generally four types of packets we use to pass mesages between bidders and auctioneer. 
 
 \subsubsection{Marketing Manager}
+
+\begin{figure}[ht!]
+\centering
+\includegraphics[width=90mm]{core.jpg}
+\caption{The Marketing Manager (Auctioneer) Modules}
+\label{overflow}
+\end{figure}
 
 \subsubsection{User side bidding agent}
 

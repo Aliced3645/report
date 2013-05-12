@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2012.5.16)  12 MAY 2013 01:09
+This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2012.5.16)  12 MAY 2013 02:45
 entering extended mode
  %&-line parsing enabled.
 **report.tex
@@ -223,120 +223,116 @@ Underfull \hbox (badness 10000) in paragraph at lines 226--228
 <flow.jpg, id=22, 963.6pt x 722.7pt>
 File: flow.jpg Graphic file (type jpg)
  <use flow.jpg>
-Overfull \hbox (21.1973pt too wide) in paragraph at lines 264--265
+Overfull \hbox (21.1973pt too wide) in paragraph at lines 268--269
  [][] 
  []
 
-<architecture_controller.jpg, id=23, 963.6pt x 722.7pt>
+[5 <./flow.jpg>] <architecture_controller.jpg, id=26, 963.6pt x 722.7pt>
 File: architecture_controller.jpg Graphic file (type jpg)
 
 <use architecture_controller.jpg>
-Overfull \hbox (21.1973pt too wide) in paragraph at lines 272--273
+Overfull \hbox (21.1973pt too wide) in paragraph at lines 290--291
  [][] 
  []
 
-<protocol.jpg, id=24, 963.6pt x 722.7pt>
+[6 <./architecture_controller.jpg>] <protocol.jpg, id=30, 963.6pt x 722.7pt>
 File: protocol.jpg Graphic file (type jpg)
- <use protocol.jpg>
-Overfull \hbox (21.1973pt too wide) in paragraph at lines 288--289
+
+<use protocol.jpg>
+Overfull \hbox (21.1973pt too wide) in paragraph at lines 326--327
  [][] 
  []
 
-
-Underfull \vbox (badness 4569) has occurred while \output is active []
-
- [5 <./flow.jpg> <./architecture_controller.jpg>] <core.jpg, id=28, 963.6pt x 7
-22.7pt>
+<core.jpg, id=31, 963.6pt x 722.7pt>
 File: core.jpg Graphic file (type jpg)
-
-<use core.jpg>
-Overfull \hbox (21.1973pt too wide) in paragraph at lines 297--298
+ <use core.jpg>
+Overfull \hbox (21.1973pt too wide) in paragraph at lines 335--336
  [][] 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 311--311
+Underfull \hbox (badness 10000) in paragraph at lines 349--349
 []\OT1/ptm/b/n/14.4 DISCUSSION AND FU-TURE
  []
 
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [6 <./protocol.jpg> <./core.jpg>]
+ [7 <./protocol.jpg> <./core.jpg>]
 
-LaTeX Warning: Citation `Rajkumar' on page 7 undefined on input line 376.
-
-
-LaTeX Warning: Citation `Artur' on page 7 undefined on input line 379.
+LaTeX Warning: Citation `Rajkumar' on page 8 undefined on input line 414.
 
 
-LaTeX Warning: Citation `Ali' on page 7 undefined on input line 382.
+LaTeX Warning: Citation `Artur' on page 8 undefined on input line 417.
 
 
-LaTeX Warning: Citation `Sai' on page 7 undefined on input line 384.
+LaTeX Warning: Citation `Ali' on page 8 undefined on input line 420.
 
 
-LaTeX Warning: Citation `Mohammad' on page 7 undefined on input line 394.
+LaTeX Warning: Citation `Sai' on page 8 undefined on input line 422.
+
+
+LaTeX Warning: Citation `Mohammad' on page 8 undefined on input line 432.
 
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [7]
+ [8]
 
-LaTeX Warning: Citation `nox' on page 8 undefined on input line 408.
-
-
-LaTeX Warning: Citation `nettle' on page 8 undefined on input line 408.
+LaTeX Warning: Citation `nox' on page 9 undefined on input line 446.
 
 
-LaTeX Warning: Citation `andrew' on page 8 undefined on input line 410.
+LaTeX Warning: Citation `nettle' on page 9 undefined on input line 446.
 
 
-Underfull \hbox (badness 2134) in paragraph at lines 424--425
+LaTeX Warning: Citation `andrew' on page 9 undefined on input line 448.
+
+
+Underfull \hbox (badness 2134) in paragraph at lines 462--463
 \OT1/ptm/m/n/10.95 Thanks An-drew Forgu-son and Ro-drigo Fon-seca.
  []
 
 
-Underfull \hbox (badness 1655) in paragraph at lines 435--436
+Underfull \hbox (badness 1655) in paragraph at lines 473--474
 \OT1/ptm/m/n/10.95 ing, 2009. IPDPS 2009. IEEE In-ter-na-tional
  []
 
 
-Underfull \hbox (badness 3098) in paragraph at lines 436--437
+Underfull \hbox (badness 3098) in paragraph at lines 474--475
 \OT1/ptm/m/n/10.95 con-fer-ence on Elec-tronic com-merce. ACM,
  []
 
 
-Underfull \hbox (badness 1221) in paragraph at lines 437--438
+Underfull \hbox (badness 1221) in paragraph at lines 475--476
 \OT1/ptm/m/n/10.95 re-source al-lo-ca-tion. Uni-ver-sity of Cal-i-for-nia,
  []
 
 
-Underfull \hbox (badness 1484) in paragraph at lines 438--439
+Underfull \hbox (badness 1484) in paragraph at lines 476--477
 []\OT1/ptm/m/n/10.95 Bredin, Jonathan, David Kotz, and Daniela
  []
 
 
-Underfull \hbox (badness 2435) in paragraph at lines 439--440
+Underfull \hbox (badness 2435) in paragraph at lines 477--478
 []\OT1/ptm/m/n/10.95 Vickrey, William. "Coun-ter-spec-u-la-tion, auc-
  []
 
 
-Underfull \hbox (badness 1194) in paragraph at lines 440--441
+Underfull \hbox (badness 1194) in paragraph at lines 478--479
 []\OT1/ptm/m/n/10.95 Ausubel, Lawrence M., and Pe-ter Cram-ton.
  []
 
 
-Underfull \hbox (badness 2503) in paragraph at lines 440--441
+Underfull \hbox (badness 2503) in paragraph at lines 478--479
 \OT1/ptm/m/n/10.95 "Auc-tion-ing many di-vis-i-ble goods." Jour-nal
  []
 
 
-Underfull \hbox (badness 1005) in paragraph at lines 440--441
+Underfull \hbox (badness 1005) in paragraph at lines 478--479
 \OT1/ptm/m/n/10.95 of the Eu-ro-pean Eco-nomic As-so-ci-a-tion 2.23
  []
 
-[8] [9
+[9] [10
 
 ] (./report.aux)
 
@@ -361,9 +357,9 @@ msfonts/cm/cmr12.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/c
 mr8.pfb></usr/share/texmf-texlive/fonts/type1/urw/times/utmb8a.pfb></usr/share/
 texmf-texlive/fonts/type1/urw/times/utmr8a.pfb></usr/share/texmf-texlive/fonts/
 type1/urw/times/utmri8a.pfb>
-Output written on report.pdf (9 pages, 442958 bytes).
+Output written on report.pdf (10 pages, 447909 bytes).
 PDF statistics:
- 66 PDF objects out of 1000 (max. 8388607)
+ 69 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
  26 words of extra memory for PDF output out of 10000 (max. 10000000)
 
