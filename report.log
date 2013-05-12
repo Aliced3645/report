@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2012.5.16)  12 MAY 2013 02:45
+This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2012.5.16)  12 MAY 2013 12:34
 entering extended mode
  %&-line parsing enabled.
 **report.tex
@@ -81,6 +81,24 @@ File: pdftex.def 2010/03/12 v0.04p Graphics/color for pdfTeX
 \Gin@req@height=\dimen107
 \Gin@req@width=\dimen108
 ) (./report.aux
+
+LaTeX Warning: Label `overflow' multiply defined.
+
+
+LaTeX Warning: Label `overflow' multiply defined.
+
+
+LaTeX Warning: Label `overflow' multiply defined.
+
+
+LaTeX Warning: Label `overflow' multiply defined.
+
+
+LaTeX Warning: Label `overflow' multiply defined.
+
+
+LaTeX Warning: Label `overflow' multiply defined.
+
 
 LaTeX Warning: Label `overflow' multiply defined.
 
@@ -239,102 +257,151 @@ Overfull \hbox (21.1973pt too wide) in paragraph at lines 290--291
 File: protocol.jpg Graphic file (type jpg)
 
 <use protocol.jpg>
-Overfull \hbox (21.1973pt too wide) in paragraph at lines 326--327
+Overfull \hbox (21.1973pt too wide) in paragraph at lines 328--329
  [][] 
  []
 
 <core.jpg, id=31, 963.6pt x 722.7pt>
 File: core.jpg Graphic file (type jpg)
  <use core.jpg>
-Overfull \hbox (21.1973pt too wide) in paragraph at lines 335--336
+Overfull \hbox (21.1973pt too wide) in paragraph at lines 337--338
+ [][] 
+ []
+
+[7 <./protocol.jpg> <./core.jpg>]
+<circle_utilization.png, id=36, 634.37pt x 390.45876pt>
+File: circle_utilization.png Graphic file (type png)
+
+<use circle_utilization.png>
+Overfull \hbox (21.1973pt too wide) in paragraph at lines 379--380
  [][] 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 349--349
-[]\OT1/ptm/b/n/14.4 DISCUSSION AND FU-TURE
+Underfull \hbox (badness 1043) in paragraph at lines 376--383
+\OT1/ptm/m/n/10.95 We have tested the per-for-mance with the aid of
+ []
+
+<line_utilization.png, id=37, 637.38126pt x 388.45125pt>
+File: line_utilization.png Graphic file (type png)
+
+<use line_utilization.png>
+Overfull \hbox (21.1973pt too wide) in paragraph at lines 386--387
+ [][] 
+ []
+
+<mytopo_utilization.png, id=38, 624.3325pt x 381.425pt>
+File: mytopo_utilization.png Graphic file (type png)
+
+<use mytopo_utilization.png>
+Overfull \hbox (21.1973pt too wide) in paragraph at lines 393--394
+ [][] 
+ []
+
+<line_profit.png, id=39, 637.38126pt x 391.4625pt>
+File: line_profit.png Graphic file (type png)
+ <use line_profit.png>
+Overfull \hbox (21.1973pt too wide) in paragraph at lines 400--401
+ [][] 
+ []
+
+<circle_profit.png, id=40, 626.34pt x 385.44pt>
+File: circle_profit.png Graphic file (type png)
+ <use circle_profit.png>
+Overfull \hbox (21.1973pt too wide) in paragraph at lines 407--408
+ [][] 
+ []
+
+<mytop_profit.png, id=41, 654.445pt x 394.47375pt>
+File: mytop_profit.png Graphic file (type png)
+ <use mytop_profit.png>
+Overfull \hbox (21.1973pt too wide) in paragraph at lines 414--415
+ [][] 
  []
 
 
+Underfull \hbox (badness 10000) in paragraph at lines 419--419
+[]\OT1/ptm/b/n/14.4 DISCUSSION AND FU-TURE
+ []
+
+[8 <./circle_utilization.png (PNG copy)> <./line_utilization.png (PNG copy)> <.
+/mytopo_utilization.png (PNG copy)> <./line_profit.png (PNG copy)>]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [7 <./protocol.jpg> <./core.jpg>]
+ [9 <./circle_profit.png (PNG copy)> <./mytop_profit.png (PNG copy)>]
 
-LaTeX Warning: Citation `Rajkumar' on page 8 undefined on input line 414.
-
-
-LaTeX Warning: Citation `Artur' on page 8 undefined on input line 417.
+LaTeX Warning: Citation `Rajkumar' on page 10 undefined on input line 484.
 
 
-LaTeX Warning: Citation `Ali' on page 8 undefined on input line 420.
+LaTeX Warning: Citation `Artur' on page 10 undefined on input line 487.
 
 
-LaTeX Warning: Citation `Sai' on page 8 undefined on input line 422.
+LaTeX Warning: Citation `Ali' on page 10 undefined on input line 490.
 
 
-LaTeX Warning: Citation `Mohammad' on page 8 undefined on input line 432.
+LaTeX Warning: Citation `Sai' on page 10 undefined on input line 492.
+
+
+LaTeX Warning: Citation `Mohammad' on page 10 undefined on input line 502.
+
+
+LaTeX Warning: Citation `nox' on page 10 undefined on input line 516.
+
+
+LaTeX Warning: Citation `nettle' on page 10 undefined on input line 516.
+
+
+LaTeX Warning: Citation `andrew' on page 10 undefined on input line 518.
 
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [8]
-
-LaTeX Warning: Citation `nox' on page 9 undefined on input line 446.
-
-
-LaTeX Warning: Citation `nettle' on page 9 undefined on input line 446.
-
-
-LaTeX Warning: Citation `andrew' on page 9 undefined on input line 448.
-
-
-Underfull \hbox (badness 2134) in paragraph at lines 462--463
+ [10]
+Underfull \hbox (badness 2134) in paragraph at lines 532--533
 \OT1/ptm/m/n/10.95 Thanks An-drew Forgu-son and Ro-drigo Fon-seca.
  []
 
 
-Underfull \hbox (badness 1655) in paragraph at lines 473--474
+Underfull \hbox (badness 1655) in paragraph at lines 544--545
 \OT1/ptm/m/n/10.95 ing, 2009. IPDPS 2009. IEEE In-ter-na-tional
  []
 
 
-Underfull \hbox (badness 3098) in paragraph at lines 474--475
+Underfull \hbox (badness 3098) in paragraph at lines 545--546
 \OT1/ptm/m/n/10.95 con-fer-ence on Elec-tronic com-merce. ACM,
  []
 
 
-Underfull \hbox (badness 1221) in paragraph at lines 475--476
+Underfull \hbox (badness 1221) in paragraph at lines 546--547
 \OT1/ptm/m/n/10.95 re-source al-lo-ca-tion. Uni-ver-sity of Cal-i-for-nia,
  []
 
 
-Underfull \hbox (badness 1484) in paragraph at lines 476--477
+Underfull \hbox (badness 1484) in paragraph at lines 547--548
 []\OT1/ptm/m/n/10.95 Bredin, Jonathan, David Kotz, and Daniela
  []
 
 
-Underfull \hbox (badness 2435) in paragraph at lines 477--478
+Underfull \hbox (badness 2435) in paragraph at lines 548--549
 []\OT1/ptm/m/n/10.95 Vickrey, William. "Coun-ter-spec-u-la-tion, auc-
  []
 
 
-Underfull \hbox (badness 1194) in paragraph at lines 478--479
+Underfull \hbox (badness 1194) in paragraph at lines 549--550
 []\OT1/ptm/m/n/10.95 Ausubel, Lawrence M., and Pe-ter Cram-ton.
  []
 
 
-Underfull \hbox (badness 2503) in paragraph at lines 478--479
+Underfull \hbox (badness 2503) in paragraph at lines 549--550
 \OT1/ptm/m/n/10.95 "Auc-tion-ing many di-vis-i-ble goods." Jour-nal
  []
 
 
-Underfull \hbox (badness 1005) in paragraph at lines 478--479
+Underfull \hbox (badness 1005) in paragraph at lines 549--550
 \OT1/ptm/m/n/10.95 of the Eu-ro-pean Eco-nomic As-so-ci-a-tion 2.23
  []
 
-[9] [10
-
-] (./report.aux)
+[11] (./report.aux)
 
 LaTeX Warning: There were undefined references.
 
@@ -343,10 +410,10 @@ LaTeX Warning: There were multiply-defined labels.
 
  ) 
 Here is how much of TeX's memory you used:
- 1488 strings out of 493857
- 19524 string characters out of 1153305
- 80636 words of memory out of 3000000
- 4777 multiletter control sequences out of 15000+50000
+ 1520 strings out of 493857
+ 20211 string characters out of 1153305
+ 79641 words of memory out of 3000000
+ 4802 multiletter control sequences out of 15000+50000
  20030 words of font info for 44 fonts, out of 3000000 for 9000
  714 hyphenation exceptions out of 8191
  25i,7n,32p,553b,209s stack positions out of 5000i,500n,10000p,200000b,50000s
@@ -357,9 +424,9 @@ msfonts/cm/cmr12.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/c
 mr8.pfb></usr/share/texmf-texlive/fonts/type1/urw/times/utmb8a.pfb></usr/share/
 texmf-texlive/fonts/type1/urw/times/utmr8a.pfb></usr/share/texmf-texlive/fonts/
 type1/urw/times/utmri8a.pfb>
-Output written on report.pdf (10 pages, 447909 bytes).
+Output written on report.pdf (11 pages, 597187 bytes).
 PDF statistics:
- 69 PDF objects out of 1000 (max. 8388607)
+ 78 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
- 26 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 56 words of extra memory for PDF output out of 10000 (max. 10000000)
 

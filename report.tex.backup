@@ -310,7 +310,8 @@ be acoomodated to various machine and data presentation types.
 The bidding request packet is used for the bidders to send their requests to the auctioneer. The bidder name is a String type in Java, and other 
 values are all Long (32 bits). Since we only allows users to bid 
 for a future period of time, the Start and End time fields in the packet must be positive values and they 
-are presented as the relative offset of time comparing with the current time. The speicial source IP for the bidding request packet is 1.2.3.4. The bidding result packet is sent by the auctioneer to the 
+are presented as the relative offset of time comparing with the current time (presented as a long value in the central controller and
+we assume the user could know the current time). The speicial source IP for the bidding request packet is 1.2.3.4. The bidding result packet is sent by the auctioneer to the 
 bidders. The speicial source IP is 1.2.3.4 and the bidding result is a boolean type and the allowed rate is a allocated rate which must be no smaller than the 
 user's requested rate. The latency probe packet is used for the controller to probe the real-time latency between two nodes. The source and destination IP
 are set by the controller as the real IP of the two nodes (before sending the latency probe packets, the controller should establish rules on all
@@ -318,7 +319,9 @@ switches on the path, using the two IP as matching fields, the out port for the 
 The Send Reminder Packet is used for reminding bidders to send their flows when their winning bidding time comes. The speicial source IP is 1.2.3.5. The 
 packet tells the controller where is the destination of the flow and the duration of this transmission. The reminding mechanism is facilited by the 
 timers so that the bidders don't need to record what they have won. The Marketing Manager records these information for the bidder and when the start time 
-of their winning bids arrives, the reminder packet is sent.
+of their winning bids arrives, the reminder packet is sent. When the bidder receives the reminder packet, it will start sending UDP/TCP packets. The 
+bidder does not need to set the route and rate limiters because the controller has already set the rules in switches on the route and set a rate 
+limiter on one queue of the first swtich of the flow's path.
 
 \begin{figure}[ht!]
 \centering
@@ -336,11 +339,33 @@ of their winning bids arrives, the reminder packet is sent.
 \label{overflow}
 \end{figure}
 
-\subsubsection{User side bidding agent}
+The internal modules of the Marketing Manager is shown in Figure 5. The marketing manager receives and sends bidding related objects passed by 
+or to the lower level bidding controller. The Auctionner object is a singleton, which maintains all bidding requests of this round (it also
+has a list of coming bidding requests of next round in case it is calculating the allocation for this round but some bidders have started
+bidding for the next round), the information of all bidders who have participated in the bidding from the start, and the results of last round.
+It also maintains the current allocation strategy. The bidding clock is in pace of the real world time. It sends a signal every 10 seconds (the 
+bidding cycle time we set) to the auctioneer to perform an auction calculation. In the allocation strategy module we provide three strategies,
+one is first-come-first-serve random allocation, the second is the resource value estimation based strategy, which is also called Income and Utilization 
+Index based strategy, and the third is a mutation of the previous one, which aims to maximize the utilization of bandwidth resource. A rather
+important part is the Scheduler module, which serves as our Network Informantion Base. The Scheduler is responsible for record all historic 
+allocations (mainly their starting and ending time, their routes and their sending rate). The scheduler provides an interface for allocation methods
+to verify whether an bidding request is valid in that certain time period by doing the checking using its recorded information. Lastly, the Marketing
+Manager holds a seperate module for system administrators to use REST APIs to set and test some functionalities.
 
+\subsubsection{User side bidding agent}
+As long as the potential bidders could follow the bidding protocol, they could build their client bidding program (the bidding agent) in any language
+in any form. But there ar some hints for buiding the bidding agent. One is the bidders have to listen to potential incoming packets and analyze 
+their IP address to see whether they are bidding messages. Another is that the user has to construct the bidding packet by himself, so he could 
+manipulate all fields of the packet. 
 
 
 \section{Implementation}
+Our demo system is consisted of two programs, one resides in the FloodLight and another is the bidding agent we build in Python. There are roughly 
+6000 lines of Java code and 500 lines of Python code. The low level marketing controller is a Floodlight Listener listening for any PACKET_IN messages.
+In order to let our special bidding packet with special IP to be transferred to the listener, we modified the floodlight controller (implementation 
+of IFloodlightProvider) to let it not filter out the bidding mesasge packets. The route is presented by the Floodlight as a list of switch-port pairs,
+and Floodlight provides an interface to list all possible routes between any two switches, so an additional hashmap should be used to recordthe host machiens
+and their attachment points. 
 
 
 \section{Evaluation}
