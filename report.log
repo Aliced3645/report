@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2012.5.16)  11 MAY 2013 18:15
+This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2012.5.16)  12 MAY 2013 01:09
 entering extended mode
  %&-line parsing enabled.
 **report.tex
@@ -80,7 +80,20 @@ File: pdftex.def 2010/03/12 v0.04p Graphics/color for pdfTeX
 ))
 \Gin@req@height=\dimen107
 \Gin@req@width=\dimen108
-) (./report.aux)
+) (./report.aux
+
+LaTeX Warning: Label `overflow' multiply defined.
+
+
+LaTeX Warning: Label `overflow' multiply defined.
+
+
+LaTeX Warning: Label `overflow' multiply defined.
+
+
+LaTeX Warning: Label `overflow' multiply defined.
+
+)
 \openout1 = `report.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 9.
@@ -96,8 +109,7 @@ LaTeX Font Info:    ... okay on input line 9.
 LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 9.
 LaTeX Font Info:    ... okay on input line 9.
 LaTeX Font Info:    Try loading font information for OT1+ptm on input line 9.
-
-(/usr/share/texmf-texlive/tex/latex/psnfss/ot1ptm.fd
+ (/usr/share/texmf-texlive/tex/latex/psnfss/ot1ptm.fd
 File: ot1ptm.fd 2001/06/04 font definitions for OT1/ptm.
 )
 *geometry auto-detecting driver*
@@ -108,8 +120,8 @@ landscape: --
 twocolumn: true
 twoside: --
 asymmetric: --
-h-parts: 72.26999pt, 469.75502pt, 72.26999pt
-v-parts: 72.26999pt, 650.43001pt, 72.26999pt
+h-parts: 54.2025pt, 505.89pt, 54.2025pt
+v-parts: 54.2025pt, 686.56499pt, 54.2025pt
 hmarginratio: --
 vmarginratio: --
 lines: --
@@ -123,17 +135,17 @@ driver: pdftex
 -------------------- Page layout dimensions and switches
 \paperwidth  614.295pt
 \paperheight 794.96999pt
-\textwidth  469.75502pt
-\textheight 650.43001pt
-\oddsidemargin  0.0pt
-\evensidemargin 0.0pt
-\topmargin  -37.0pt
+\textwidth  505.89pt
+\textheight 686.56499pt
+\oddsidemargin  -18.06749pt
+\evensidemargin -18.06749pt
+\topmargin  -55.06749pt
 \headheight 12.0pt
 \headsep    25.0pt
 \footskip   30.0pt
 \marginparwidth 4.0pt
 \marginparsep   10.0pt
-\columnsep  10.0pt
+\columnsep  36.135pt
 \skip\footins  10.0pt plus 4.0pt minus 2.0pt
 \hoffset 0.0pt
 \voffset 0.0pt
@@ -164,123 +176,184 @@ LaTeX Font Info:    External font `cmex10' loaded for size
 (Font)              <6> on input line 14.
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <14.4> not available
 (Font)              Font shape `OT1/ptm/b/n' tried instead on input line 16.
-
-Underfull \hbox (badness 1715) in paragraph at lines 17--25
-\OT1/ptm/m/it/10.95 M\OT1/ptm/m/n/10.95 arketing sys-tem we build for dat-a-cen
--ter Net-
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <10.95> on input line 17.
+ <general_flow.jpg, id=1, 963.6pt x 722.7pt>
+File: general_flow.jpg Graphic file (type jpg)
+ <use general_flow.jpg>
+Overfull \hbox (21.1973pt too wide) in paragraph at lines 56--57
+ [][] 
  []
 
-LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <12> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 35.
-[1{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [1{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}
 
 
 ]
+LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <12> not available
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 64.
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <10.95> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 62.
- [2]
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 91.
+ [2 <./general_flow.jpg>]
 
-LaTeX Warning: Citation `bob' on page 3 undefined on input line 107.
-
-LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <10.95> on input line 113.
-
-LaTeX Warning: Citation `Sai' on page 3 undefined on input line 127.
+LaTeX Warning: Citation `bob' on page 3 undefined on input line 135.
 
 
-LaTeX Warning: Citation `ali' on page 3 undefined on input line 142.
+Underfull \vbox (badness 1009) has occurred while \output is active []
 
-[3]
-Underfull \hbox (badness 7595) in paragraph at lines 198--200
+ [3]
+
+LaTeX Warning: Citation `Sai' on page 4 undefined on input line 155.
+
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+
+
+LaTeX Warning: Citation `ali' on page 4 undefined on input line 170.
+
+[4]
+Underfull \hbox (badness 10000) in paragraph at lines 226--228
 []\OT1/ptm/m/n/10.95 If more re-sources are
  []
 
 \c@thm=\count96
+<flow.jpg, id=22, 963.6pt x 722.7pt>
+File: flow.jpg Graphic file (type jpg)
+ <use flow.jpg>
+Overfull \hbox (21.1973pt too wide) in paragraph at lines 264--265
+ [][] 
+ []
 
-Underfull \hbox (badness 10000) in paragraph at lines 235--235
+<architecture_controller.jpg, id=23, 963.6pt x 722.7pt>
+File: architecture_controller.jpg Graphic file (type jpg)
+
+<use architecture_controller.jpg>
+Overfull \hbox (21.1973pt too wide) in paragraph at lines 272--273
+ [][] 
+ []
+
+<protocol.jpg, id=24, 963.6pt x 722.7pt>
+File: protocol.jpg Graphic file (type jpg)
+ <use protocol.jpg>
+Overfull \hbox (21.1973pt too wide) in paragraph at lines 288--289
+ [][] 
+ []
+
+
+Underfull \vbox (badness 4569) has occurred while \output is active []
+
+ [5 <./flow.jpg> <./architecture_controller.jpg>] <core.jpg, id=28, 963.6pt x 7
+22.7pt>
+File: core.jpg Graphic file (type jpg)
+
+<use core.jpg>
+Overfull \hbox (21.1973pt too wide) in paragraph at lines 297--298
+ [][] 
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 311--311
 []\OT1/ptm/b/n/14.4 DISCUSSION AND FU-TURE
  []
 
-[4]
 
-LaTeX Warning: Citation `Rajkumar' on page 5 undefined on input line 289.
-
-
-LaTeX Warning: Citation `Artur' on page 5 undefined on input line 292.
-
-
-LaTeX Warning: Citation `Ali' on page 5 undefined on input line 295.
-
-
-LaTeX Warning: Citation `Sai' on page 5 undefined on input line 297.
-
-
-LaTeX Warning: Citation `Mohammad' on page 5 undefined on input line 307.
-
-
-Underfull \hbox (badness 3039) in paragraph at lines 285--314
-[]\OT1/ptm/m/n/10.95 To elim-i-nat-ing pos-si-ble con-fu-sion, al-lo-cat-ing
- []
-
-[5]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
+ [6 <./protocol.jpg> <./core.jpg>]
+
+LaTeX Warning: Citation `Rajkumar' on page 7 undefined on input line 376.
 
 
-LaTeX Warning: Citation `nox' on page 6 undefined on input line 321.
+LaTeX Warning: Citation `Artur' on page 7 undefined on input line 379.
 
 
-LaTeX Warning: Citation `floodlight' on page 6 undefined on input line 321.
+LaTeX Warning: Citation `Ali' on page 7 undefined on input line 382.
 
 
-LaTeX Warning: Citation `nettle' on page 6 undefined on input line 321.
+LaTeX Warning: Citation `Sai' on page 7 undefined on input line 384.
 
 
-LaTeX Warning: Citation `andrew' on page 6 undefined on input line 323.
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 340--341
-[]\OT1/ptm/m/n/10.95 Amazon Web Ser-vices:
- []
+LaTeX Warning: Citation `Mohammad' on page 7 undefined on input line 394.
 
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [6]
-Underfull \hbox (badness 10000) in paragraph at lines 341--342
-[]\OT1/ptm/m/n/10.95 Amazon EC2 Pric-ing:
+ [7]
+
+LaTeX Warning: Citation `nox' on page 8 undefined on input line 408.
+
+
+LaTeX Warning: Citation `nettle' on page 8 undefined on input line 408.
+
+
+LaTeX Warning: Citation `andrew' on page 8 undefined on input line 410.
+
+
+Underfull \hbox (badness 2134) in paragraph at lines 424--425
+\OT1/ptm/m/n/10.95 Thanks An-drew Forgu-son and Ro-drigo Fon-seca.
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 342--343
-[]\OT1/ptm/m/n/10.95 EC2 Spot In-stances:
+Underfull \hbox (badness 1655) in paragraph at lines 435--436
+\OT1/ptm/m/n/10.95 ing, 2009. IPDPS 2009. IEEE In-ter-na-tional
  []
 
 
-Underfull \hbox (badness 2189) in paragraph at lines 344--345
-\OT1/ptm/m/n/10.95 ACM con-fer-ence on Elec-tronic com-merce.
+Underfull \hbox (badness 3098) in paragraph at lines 436--437
+\OT1/ptm/m/n/10.95 con-fer-ence on Elec-tronic com-merce. ACM,
  []
 
 
-Underfull \hbox (badness 1014) in paragraph at lines 348--349
+Underfull \hbox (badness 1221) in paragraph at lines 437--438
+\OT1/ptm/m/n/10.95 re-source al-lo-ca-tion. Uni-ver-sity of Cal-i-for-nia,
+ []
+
+
+Underfull \hbox (badness 1484) in paragraph at lines 438--439
+[]\OT1/ptm/m/n/10.95 Bredin, Jonathan, David Kotz, and Daniela
+ []
+
+
+Underfull \hbox (badness 2435) in paragraph at lines 439--440
+[]\OT1/ptm/m/n/10.95 Vickrey, William. "Coun-ter-spec-u-la-tion, auc-
+ []
+
+
+Underfull \hbox (badness 1194) in paragraph at lines 440--441
+[]\OT1/ptm/m/n/10.95 Ausubel, Lawrence M., and Pe-ter Cram-ton.
+ []
+
+
+Underfull \hbox (badness 2503) in paragraph at lines 440--441
 \OT1/ptm/m/n/10.95 "Auc-tion-ing many di-vis-i-ble goods." Jour-nal
  []
 
-[7
+
+Underfull \hbox (badness 1005) in paragraph at lines 440--441
+\OT1/ptm/m/n/10.95 of the Eu-ro-pean Eco-nomic As-so-ci-a-tion 2.23
+ []
+
+[8] [9
 
 ] (./report.aux)
 
 LaTeX Warning: There were undefined references.
 
+
+LaTeX Warning: There were multiply-defined labels.
+
  ) 
 Here is how much of TeX's memory you used:
- 1458 strings out of 493857
- 19038 string characters out of 1153305
- 82576 words of memory out of 3000000
- 4753 multiletter control sequences out of 15000+50000
+ 1488 strings out of 493857
+ 19524 string characters out of 1153305
+ 80636 words of memory out of 3000000
+ 4777 multiletter control sequences out of 15000+50000
  20030 words of font info for 44 fonts, out of 3000000 for 9000
  714 hyphenation exceptions out of 8191
- 25i,7n,32p,1076b,209s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 25i,7n,32p,553b,209s stack positions out of 5000i,500n,10000p,200000b,50000s
 {/usr/share/texmf-texlive/fonts/enc/dvips/base/8r.enc}</usr/share/texmf-texli
 ve/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texmf-texlive/fonts/ty
 pe1/public/amsfonts/cm/cmmi8.pfb></usr/share/texmf-texlive/fonts/type1/public/a
@@ -288,9 +361,9 @@ msfonts/cm/cmr12.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/c
 mr8.pfb></usr/share/texmf-texlive/fonts/type1/urw/times/utmb8a.pfb></usr/share/
 texmf-texlive/fonts/type1/urw/times/utmr8a.pfb></usr/share/texmf-texlive/fonts/
 type1/urw/times/utmri8a.pfb>
-Output written on report.pdf (7 pages, 104628 bytes).
+Output written on report.pdf (9 pages, 442958 bytes).
 PDF statistics:
- 55 PDF objects out of 1000 (max. 8388607)
+ 66 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
- 1 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 26 words of extra memory for PDF output out of 10000 (max. 10000000)
 

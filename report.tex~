@@ -1,7 +1,7 @@
 \documentclass[a4paper,11pt,twocolumn]{article}
-
+\setlength{\columnsep}{0.5in}
 \usepackage{url}
-\usepackage[letterpaper,margin=1in]{geometry}
+\usepackage[letterpaper,margin=0.75in]{geometry}
 \usepackage{times}
 \usepackage{graphicx}
 
@@ -14,7 +14,7 @@
 \maketitle
 
 \begin{abstract}
-In this report we present MSDN, an auction-based \emph{M}arketing system we build for datacenter Network resource Allocation based on \emph{S}oftware \emph{D}efined \emph{N}etworks.
+In this report we present SDN$^{2}$, an auction-based Marketing \emph{S}ystem for \emph{D}atacenter \emph{N}etwork resource Allocation based on \emph{S}oftware \emph{D}efined \emph{N}etworks.
 Motivited by similar mechanism of auctions for resource in other computer systems, we aim to 
 let users bid their network resouces, mainly bandwidth and latency of their desired flows. Different from existing 
 bidding systems like Google's marketing system\cite{google}, our system is based on SDN network and utilizes the advantage
@@ -27,9 +27,38 @@ algorithms and evaluated their performances.
 Resource allocation is an important topic in system related area, especially in data center where network resources heavily influence the performance 
 of the applicaton running on the datacenter. Since the network resource is limited and application expense is infinite, an idea of launching auctions on
 datacenters for applications to bid resources comes to existence. With the core of auction, other marketing mechanisms have been built for public or 
-private datacenters, such as AWS\cite{aws} or internal datacenters for large companies such as Google and Microsoft. 
+private datacenters, such as AWS\cite{aws} or internal datacenters for large companies such as Google and Microsoft. While various types of marketing systems
+appear, but few of them combine with the existence of SDN network. The appearance of SDN network could provide network manipulators with more powerful 
+ways to manage the network. For example, the existence of NIB(Network Informantion Base) in Onix\cite{onix} could provide the upper layer with the global
+topology of the entire network just in a single manager machine. 
 
-\section{BackGround}
+So in the paper we combine the idea of auction in datacenter networking with the SDN technology so as to reach the goal of bidding network resources. 
+Since we have the central information of the network, so bidding and alocations of auctions could be performed in a single node in the network, so as to
+reach the goal of real-time allocation. The general work flow is shown in figure 1. 
+
+The general flow of each round of bidding starts from the bidders. Bidders first recognize their flow requirements, for example, they need to buy a flow 
+from machine A to machine B in the network with a certain amount of data to transfer, with the hope of minimum bandwidth and latency (QoS) guarantees in 
+a certain time period. After confirming these requiremetns, bidders send bidding requests to the auctioneer. The auctioneer collects requests for this 
+round and wait for the bidding clock to alert, saying it is time to calculate the allocation. By using specific allocation algorithm, the auctioneer could
+get a boolean result for each bidder's request and send the feedback to the bidders, and then a new round starts.
+
+Our goals for this project are, first to build a workable system running the auction and doing allocation in real time, secondly to provision a 
+protocol (a standard interface) for all parties wishing to use the system to follow so as to communicate using the protocol, and lastly to investigate
+algorithms to allocation resources basing on requests, for different goals. 
+
+In section 2 we investigate some existing datacenter markets and their pricing machanisms. In sections 3 we conclude the contribution of our work. 
+In section 4 the design and algorithms of the system are discussed and in the implementation is introduced in sectin 5. In section 6 we do some 
+experiments and evaluation on the outcoming products. Since our system is still in the first version, in section 7 we have identified some extensible
+work which would be done in the future. And in section 8 we introduce some related work.
+
+\begin{figure}[ht!]
+\centering
+\includegraphics[width=90mm]{general_flow.jpg}
+\caption{Auction Working Flow}
+\label{overflow}
+\end{figure}
+
+\section{Background}
 In this section, we investigate exisiting paradigms of data centers (mainly private datacenters and public datacenters) and their marketing and 
 pricing methods. Also, we introduce the exisitng techniques of SDN which is the base of our system.
 \subsection{Datacenter Markets}
@@ -72,12 +101,11 @@ Clusters\cite{google} has adopted dynamic pricing and price of resources are upd
 reflect the changing demand-supply relation. For dynamic pricing, the prices are the minimum payment. But in order to maximize the utility of total resources,
 the sealed-bid second-price auctions \cite{second price} could be used so as to guarantee that as long as there are more than one bidders in a certain auction round, 
 there will always be a winner. The dynamic minimum prices in this case, serve as an indication for bidders to price their bid requests. The prices in \cite{google} could 
-change in an self-adaptive way.In short, 'hot' resources will be more expensive and a function (g(x,p)) calculates the price increment after each auction round, basing on the 
+change in an self-adaptive way. In short, 'hot' resources will be more expensive and a function (g(x,p)) calculates the price increment after each auction round, basing on the 
 exceeding of demands over supplies. Interestingly, AuYoung, et al \cite{ucsd} discovered that auctions might take some time as bidder's patience falls down
 when waiting for gaining the resource. So there should be another `buy-it-now' pricing mechanism provided for users who don't want to wait. The buy-it-now
 pricing short-circuits the price discovery process of the auction, and the price is determined by a historical function which takes the historical auction/buy-it-now
 prices for parameters.
-
 
 
 \subsection{Software Defined Network}
@@ -86,9 +114,9 @@ OpenFlow is one of the most popular and muture specifications for software defie
 OpenFlow primarily defines the control plane of the network. The Novel idea is that one or more cerntral controllers are incharge of setting upp forwarding rules in switches at the granuarity of flows. A flow could be any set of packets that share some particular characteristics,ie,source IP.Packets matching a  flow will be delivered by the switch accordind g to the flow rules, packets brlongs to no flows will be forwarded to switches, The switche then will analyze the packet, determine the forarding rules of this and similar pakcets.
 OpenFlow does not reuire major changes to existing switches. Large portios of existing switches ca support OpenFlow with proper firmware updates, and most of the swicth vendors are now adding support for OPenFlow as a standard functionality.
 \subsubsection{Floodlight}
-With OpenFlow as the foundation, serveral Openflow Controllers were deigned and implmented, including . Floodlight was orignally developed by and has become one of most supported and widely used inboth academia and industrial. Flooldlight is written in JAVA. 
-features
-
+With OpenFlow as the foundation, serveral Openflow Controllers were deigned and implmented, including NOX, Nettle and Floodlight. Floodlight was orignally developed by and has become one of most supported and widely used inboth academia and industrial. Flooldlight is written in JAVA. 
+Floodlight provides REST APIs for network administrator to take control of the netowrk in the way OpenFlow provides. Meanwhile for developers, floodlight provides a standard way for them to 
+add modules into the controller and add workflows. The controller side of SDN$^{2}$ system is implemented via the interfaces and rules Floodlight provides.
 
 
 \section{CONTRIBUTION}
@@ -211,56 +239,117 @@ In this paper, we will show that our work can satisfy no less than DRF. In fact,
 those properties are guaranteed without the need for special care and we can   potentially tackles all of the
 properties by in several particular scenarios, which the theorem may not apply due to the design level advantage of our work.
 
-
-
 \subsection{Pre-Assumption}
+In order to let the system work, we have some pre-assumptions so as to limit the environment. First, we don't specify the unit of 
+currency. Although in practice the type of currency should be figured out whether real or artificial, in this system prototype we assumed
+the we present money as a LONG type of value. Secondly, we don't care about where and how users gain their money they use to bid. Although in
+some existing systems like \cite{ucsd}, all bidders are allocated money at first and then their wealth are adjusted by the bank profit and 
+social welfare mechanism, our scenario does not have an `invisible hand` which proforms as a government. Thirdly, our system only works on 
+networks with full deployment of SDN networks. Currently the sysetm does not support networks with multiple islands, some of which are 
+OpenFlow enabled while others are not. The final major assumption we make is that the working controller never goes down. Since we store 
+information in main memory, if the controller crashes, all bidding information maintained in the bidder will be lost, and without the 
+replication mechanism it will be a huge problem in our system. For now we temporarily put aside this consideration, and we plan to add
+the fail-over mechanism in the future. 
 
 
-\subsection{Architecture}
-In this section we introduce the design of our system, and also points out our solution to the cafeterias.
 
+\subsection{Design and Architecture}
+In this section we introduce the design and architecture of our system, and also points out our solution to the cafeterias. Also, 
+we rule a protocol of exchanging bidding messages which runs in the application layer. There are major two compoenents of the sysetm,
+one is running inside the Floodlight controller, which acts as the auctioneer and the other is running on the client machine, 
+which performs as a bidding agent for the client. These two sides communicate using the bidding protocol. 
+
+\begin{figure}[ht!]
+\centering
+\includegraphics[width=90mm]{flow.jpg}
+\caption{Bidder-Auctioneer Interaction}
+\label{overflow}
+\end{figure}
+As is shown in Figure 2, 
+
+\begin{figure}[ht!]
+\centering
+\includegraphics[width=90mm]{architecture_controller.jpg}
+\caption{System Architecture}
+\label{overflow}
+\end{figure}
+
+
+
+
+
+
+
+\subsubsection{The Biddig Protocol}
+There are generally four types of packets we use to pass mesages between bidders and auctioneer. 
+
+\begin{figure}[ht!]
+\centering
+\includegraphics[width=90mm]{protocol.jpg}
+\caption{The bidding protocol}
+\label{overflow}
+\end{figure}
 
 \subsubsection{Marketing Manager}
+
+\begin{figure}[ht!]
+\centering
+\includegraphics[width=90mm]{core.jpg}
+\caption{The Marketing Manager (Auctioneer) Modules}
+\label{overflow}
+\end{figure}
 
 \subsubsection{User side bidding agent}
 
 
 
-\section{System Implementation}
+\section{Implementation}
+
 
 \section{Evaluation}
-
-
 
 \section{DISCUSSION AND FUTURE WORK}
 
 Our system is a good starting prototype, the novel idea was there but lots of potential components are remaining to be 
 further developed and researched. Some particular interesting potential future work including :
-\begin{enumerate}
 
-\item Stability Issues
-A significant unsatisfactory we have so far is the stability issue when we test on our Mininet testbed. The stability issues happens in multiple forms.  One clear understood common reason the system fails is when the user started to bid before the internal controller configure everything it needs. The coming in bidding packet could result in exceptions in various place of the system, depending the stage the system is currently within intiliazation phase. Besides the obvious easy to fix issues, we sometimes experience random time out of virtual switches simulated by mininet. A very common issue is that, floodlight controller would suddenly timeout the netty channel through which a switch is connected, due to read time out. Almost instantly after the switch was timed out and disconnected, the controller will detect a new switch in mininet, with different real machine port number. This issue happens occasionally, its reason is unknown yet and could resides in at least one of floodlight, netty framwork, mininet  or the reference swicth implementation.
+\subsection{Stability Issues}
+A significant unsatisfactory we have so far is the stability issue when we test on our Mininet testbed. 
+The stability issues happens in multiple forms.  One clear understood common reason the system fails is when the user 
+started to bid before the internal controller configure everything it needs. The coming in bidding packet could result in
+ exceptions in various place of the system, depending the stage the system is currently within intiliazation phase. 
+Besides the obvious easy to fix issues, we sometimes experience random time out of virtual switches simulated by mininet. 
+A very common issue is that, floodlight controller would suddenly timeout the netty channel through which a switch is connected, 
+due to read time out. Almost instantly after the switch was timed out and disconnected, the controller will detect a new switch 
+in mininet, with different real machine port number. This issue happens occasionally, its reason is unknown yet and could resides
+ in at least one of floodlight, netty framwork, mininet  or the reference swicth implementation.
 
-\item More Tests and immigrate to  real world test bed\\
-Because of the limit of time and the delay caused by bugs hard to trace(ie, the switch loss bug mentioned aforehead), we did not have time to test our system with real switches. It is definitely an item into our todo list and needs to be done in the future.
+\subsection{More Tests and immigrate to real world test bed}
+Because of the limit of time and the delay caused by bugs hard to trace(ie, the switch loss bug mentioned aforehead), 
+we did not have time to test our system with real switches. It is definitely an item into our todo list and needs to be done in the future.
 
+\subsection{Support of Partial Bidding Request}
+In our current settings, users can make request without any requirements on Latency. The user could simply indicate that the latency 
+is not important and the bidding agent  could translate as and Long.MAX\_VALUE to put into the request message. However,
+ we have not provided a standard when the client only have request for latency but not bandwidth. As a bandwidth of zero make
+ no sense regardless of its associated latency, this problem may further redirected to be to help user determine their needs for bandwidth.
 
+\subsection{ Request Translation}
+Another very realistic request from users may be the following. 
+Most of the users are not able to provide an information detailed enough to assemble a bid request for our system. 
+For example, user Bob may only want to download this one Gigabtyte movie tonight so he could watch it tomorrow, 
+thus the latency is not so relevant and the shape of his allocation is elastic and dividable. Or 
+Alice may want to schedule a phone call  after five minutes and does not really want to specify an end time for it, 
+as she does not know in advance. Her request might be composed of an minimun latency, an minimum bandwidth in an extendable session. 
+All those real world requests need to be translated by our bidding agent to fits in our bidding system, and our bidding system
+ could extend its rules to fit more complex and realistic scenarios. 
 
-
-\item Support of Partial  Bidding Request \\
-In our current settings, users can make request without any requirements on Latency. The user could simply indicate that the latency is not important and the bidding agent  could translate as and Long.MAX\_VALUE to put into the request message. However, we have not provided a standard when the client only have request for latency but not bandwidth. As a bandwidth of zero make no sense regardless of its associated latency, this problem may further redirected to be to help user determine their needs for bandwidth.
-
-
-
-\item  Request Translation\\
-Another very realistic request from users may be the following. Most of the users are not able to provide an information detailed enough to assemble a bid request for our system. For example, user Bob may only want to download this one Gigabtyte movie tonight so he could watch it tomorrow, thus the latency is not so relevant and the shape of his allocation is elastic and dividable. Or Alice may want to schedule a phone call  after five minutes and does not really want to specify an end time for it, as she does not know in advance. Her request might be composed of an minimun latency, an minimum bandwidth in an extendable session. All those real world requests need to be translated by our bidding agent to fits in our bidding system, and our bidding system could extend its rules to fit more complex and realistic scenarios. 
-
-
-\item Smarter Bidding agent\\
-Yet the biggest gap between our system to widely pratical usage is that most of the regular users may not want to make a bid, Either not able to or no bother to. Thus a great break through that will benefit our system greatly would be enable our bidding agent to bid for the users by predicting the potential requests.  Prediction of user requests is solo a much harder problem that people are trying to tackle(example ref paper), and its advance could benefit not only our datacenter marketing system but also many other existing systems.
-
-\end{enumerate}
- 
+\subsection{ Request Predication}
+Yet the biggest gap between our system to widely pratical usage is that most of the regular users may not want to make a bid, 
+either not able to or no bother to. Thus a great break through that will benefit our system greatly would be enable our bidding
+ agent to bid for the users by predicting the potential requests.  Prediction of user requests is solo a much harder problem that 
+people are trying to tackle(example ref paper), and its advance could benefit not only our datacenter marketing system but also many 
+other existing systems. But as aforementioned, it is generally very hard to achieve in current state of art.
 
 
 
@@ -276,8 +365,6 @@ may requires great bandwidth.
 A web search engine clusters such as Google may want to response to a request 
 within a relatively rapid time. All of the needs are to be solved with appropriate network resources
 allocation.
-
-
 
 
 % enormous number  of papers have discussed the resource allocation in clusters,
@@ -334,12 +421,17 @@ excellent MacTeX distribution).
 
 
 \section{Acknowledgment}
+Thanks Andrew Forguson and Rodrigo Fonseca. Thanks your sisters.
 
 \bibliographystyle{plain}
+
 \begin{thebibliography}{99}
- \bibitem{aws} Amazon Web Services: http://aws.amazon.com.
- \bibitem{ec2} Amazon EC2 Pricing: http://aws.amazon.com/ec2/pricing.
- \bibitem{spot} EC2 Spot Instances: http://aws.amazon.com/ec2/spot-instances.
+ \bibitem{aws} http://aws.amazon.com.
+ \bibitem{floodlight} http://www.projectfloodlight.org/floodlight.
+ \bibitem{ec2} http://aws.amazon.com/ec2/pricing.
+ \bibitem{spot} http://aws.amazon.com/ec2/spot-instances.
+ \bibitem{onix} Koponen, Teemu, et al. "Onix: a distributed control platform for large-scale production networks." Proceedings of the 9th USENIX conference on Operating systems design and implementation. USENIX Association, 2010.
+ \bibitem{openflow} McKeown, Nick, et al. "OpenFlow: enabling innovation in campus networks." ACM SIGCOMM Computer Communication Review 38.2 (2008): 69-74.
  \bibitem{google} Stokely, Murray, et al. "Using a market economy to provision compute resources across planet-wide clusters." Parallel \& Distributed Processing, 2009. IPDPS 2009. IEEE International Symposium on. IEEE, 2009.
  \bibitem{combinatorial auction} Nisan, Noam. "Bidding and allocation in combinatorial auctions." Proceedings of the 2nd ACM conference on Electronic commerce. ACM, 2000.
  \bibitem{ucsd} AuYoung, Alvin, et al. Practical market-based resource allocation. University of California, San Diego, 2010.
@@ -347,6 +439,7 @@ excellent MacTeX distribution).
  \bibitem{second price} Vickrey, William. "Counterspeculation, auctions, and competitive sealed tenders." The Journal of finance 16.1 (1961): 8-37.
  \bibitem{clock1} Ausubel, Lawrence M., and Peter Cramton. "Auctioning many divisible goods." Journal of the European Economic Association 2.23 (2004): 480-493.
  \bibitem{clock2} Cramton, Peter, and Lawrence M. Ausubel. "The clock-proxy auction: A practical combinatorial auction design." (2006): 115-138.
+ 
 \end{thebibliography}
 
 \end{document}
