@@ -14,7 +14,7 @@
 
 \begin{document}
 
- \tableofcontents
+%  \tableofcontents
 
 \title{SDN$^{2}$: Marketing System for Data-center Network Resource Allocation based on Software Defined Network}
 \author{Rui Zhou \and Shu Zhang}
@@ -633,7 +633,7 @@ due to read time out. Almost instantly after the switch was timed out and discon
 in mininet, with different real machine port number. This issue happens occasionally, its reason is unknown yet and could resides
  in at least one of floodlight, netty framwork, mininet  or the Stanford reference switch implementation.
 
-\subsection{More Tests and immigrate to real world test bed}
+\subsection{More Tests and Immigration to Real World Test Bed}
 Because of the limit of time and the delay caused by bugs hard to trace(ie, the switch loss bug mentioned previously), 
 we did not have time to test our system with real switches. It is definitely an item into our todo list and needs to be done in the future.
 

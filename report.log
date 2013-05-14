@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2012.6.11)  14 MAY 2013 14:27
+This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2012.6.11)  14 MAY 2013 14:30
 entering extended mode
  %&-line parsing enabled.
 **report.tex
@@ -264,63 +264,50 @@ driver: pdftex
 \everyMPtoPDFconversion=\toks18
 )
 \c@lstlisting=\count107
-LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <14.4> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 17.
- (./report.toc
-LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <10.95> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 1.
-LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <10.95> on input line 4.
-LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <8> on input line 4.
-LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <6> on input line 4.
-
-Underfull \hbox (badness 1406) in paragraph at lines 27--27
- [][] []\OT1/ptm/m/n/10.95 More Tests and im-mi-grate to real 
- []
-
-)
-\tf@toc=\write3
-\openout3 = `report.toc'.
-
- [1
-
-{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}
-
-]
 LaTeX Font Info:    External font `cmex10' loaded for size
 (Font)              <17.28> on input line 22.
 LaTeX Font Info:    External font `cmex10' loaded for size
 (Font)              <12> on input line 22.
-
-<general_flow.jpg, id=7, 963.6pt x 722.7pt>
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <8> on input line 22.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <6> on input line 22.
+LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <14.4> not available
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 24.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <10.95> on input line 25.
+ <general_flow.jpg, id=1, 963.6pt x 722.7pt>
 File: general_flow.jpg Graphic file (type jpg)
  <use general_flow.jpg>
 Overfull \hbox (21.1973pt too wide) in paragraph at lines 53--54
  [][] 
  []
 
-[2
+[1{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}
+
 
  <./general_flow.jpg>]
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <12> not available
 (Font)              Font shape `OT1/ptm/b/n' tried instead on input line 85.
- [3]
+
+[2]
+LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <10.95> not available
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 113.
+
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [4]
+ [3]
 
-LaTeX Warning: Citation `bob' on page 5 undefined on input line 161.
+LaTeX Warning: Citation `bob' on page 4 undefined on input line 161.
 
-[5] <flow.jpg, id=24, 963.6pt x 722.7pt>
+[4] <flow.jpg, id=21, 963.6pt x 722.7pt>
 File: flow.jpg Graphic file (type jpg)
  <use flow.jpg>
 Overfull \hbox (21.1973pt too wide) in paragraph at lines 228--229
  [][] 
  []
 
-<architecture_controller.jpg, id=25, 963.6pt x 722.7pt>
+<architecture_controller.jpg, id=22, 963.6pt x 722.7pt>
 File: architecture_controller.jpg Graphic file (type jpg)
 
 <use architecture_controller.jpg>
@@ -331,174 +318,174 @@ Overfull \hbox (21.1973pt too wide) in paragraph at lines 252--253
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [6 <./flow.jpg>] <protocol.jpg, id=29, 963.6pt x 722.7pt>
+ [5 <./flow.jpg>] <protocol.jpg, id=26, 963.6pt x 722.7pt>
 File: protocol.jpg Graphic file (type jpg)
  <use protocol.jpg>
 Overfull \hbox (21.1973pt too wide) in paragraph at lines 290--291
  [][] 
  []
 
-<core.jpg, id=30, 963.6pt x 722.7pt>
+<core.jpg, id=27, 963.6pt x 722.7pt>
 File: core.jpg Graphic file (type jpg)
  <use core.jpg>
 Overfull \hbox (21.1973pt too wide) in paragraph at lines 299--300
  [][] 
  []
 
-[7 <./architecture_controller.jpg> <./protocol.jpg>]
+[6 <./architecture_controller.jpg> <./protocol.jpg>]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
-Underfull \hbox (badness 10000) detected at line 355
+Underfull \hbox (badness 10000) detected at line 353
 [][]
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 337--356
+Underfull \hbox (badness 10000) in paragraph at lines 335--354
 
  []
 
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [8 <./core.jpg>] [9]
-Underfull \hbox (badness 1043) in paragraph at lines 542--547
+ [7 <./core.jpg>] [8]
+Underfull \hbox (badness 1043) in paragraph at lines 540--545
 \OT1/ptm/m/n/10.95 We have tested the per-for-mance with the aid of
  []
 
-<line.png, id=46, 441.65pt x 223.83624pt>
+<line.png, id=43, 441.65pt x 223.83624pt>
 File: line.png Graphic file (type png)
  <use line.png>
-<circle.png, id=47, 454.69875pt x 380.42125pt>
+<circle.png, id=44, 454.69875pt x 380.42125pt>
 File: circle.png Graphic file (type png)
  <use circle.png>
-<mytopo.png, id=48, 533.995pt x 458.71375pt>
+<mytopo.png, id=45, 533.995pt x 458.71375pt>
 File: mytopo.png Graphic file (type png)
  <use mytopo.png>
-<circle_utilization.png, id=49, 634.37pt x 390.45876pt>
+<circle_utilization.png, id=46, 634.37pt x 390.45876pt>
 File: circle_utilization.png Graphic file (type png)
 
 <use circle_utilization.png>
-Overfull \hbox (21.1973pt too wide) in paragraph at lines 576--577
+Overfull \hbox (21.1973pt too wide) in paragraph at lines 574--575
  [][] 
  []
 
-<line_utilization.png, id=50, 637.38126pt x 388.45125pt>
+<line_utilization.png, id=47, 637.38126pt x 388.45125pt>
 File: line_utilization.png Graphic file (type png)
 
 <use line_utilization.png>
-Overfull \hbox (21.1973pt too wide) in paragraph at lines 583--584
+Overfull \hbox (21.1973pt too wide) in paragraph at lines 581--582
  [][] 
  []
 
-<mytopo_utilization.png, id=51, 624.3325pt x 381.425pt>
+<mytopo_utilization.png, id=48, 624.3325pt x 381.425pt>
 File: mytopo_utilization.png Graphic file (type png)
 
 <use mytopo_utilization.png>
-Overfull \hbox (21.1973pt too wide) in paragraph at lines 590--591
+Overfull \hbox (21.1973pt too wide) in paragraph at lines 588--589
  [][] 
  []
 
-<line_profit.png, id=52, 637.38126pt x 391.4625pt>
+<line_profit.png, id=49, 637.38126pt x 391.4625pt>
 File: line_profit.png Graphic file (type png)
  <use line_profit.png>
-Overfull \hbox (21.1973pt too wide) in paragraph at lines 598--599
+Overfull \hbox (21.1973pt too wide) in paragraph at lines 596--597
  [][] 
  []
 
-<circle_profit.png, id=53, 626.34pt x 385.44pt>
+<circle_profit.png, id=50, 626.34pt x 385.44pt>
 File: circle_profit.png Graphic file (type png)
  <use circle_profit.png>
-Overfull \hbox (21.1973pt too wide) in paragraph at lines 606--607
+Overfull \hbox (21.1973pt too wide) in paragraph at lines 604--605
  [][] 
  []
 
-<mytop_profit.png, id=54, 654.445pt x 394.47375pt>
+<mytop_profit.png, id=51, 654.445pt x 394.47375pt>
 File: mytop_profit.png Graphic file (type png)
  <use mytop_profit.png>
-Overfull \hbox (21.1973pt too wide) in paragraph at lines 614--615
+Overfull \hbox (21.1973pt too wide) in paragraph at lines 612--613
  [][] 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 620--620
+Underfull \hbox (badness 10000) in paragraph at lines 618--618
 []\OT1/ptm/b/n/14.4 DISCUSSION AND FU-TURE
  []
 
 
 Underfull \vbox (badness 1442) has occurred while \output is active []
 
- [10 <./line.png (PNG copy)> <./circle.png (PNG copy)> <./mytopo.png (PNG copy)
->]
-Underfull \hbox (badness 1371) in paragraph at lines 636--636
+ [9 <./line.png (PNG copy)> <./circle.png (PNG copy)> <./mytopo.png (PNG copy)>
+]
+Underfull \hbox (badness 1371) in paragraph at lines 634--634
 []\OT1/ptm/b/n/12 More Tests and Im-mi-gra-tion to Real
  []
 
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [11 <./circle_utilization.png (PNG copy)> <./line_utilization.png (PNG copy)> 
+ [10 <./circle_utilization.png (PNG copy)> <./line_utilization.png (PNG copy)> 
 <./mytopo_utilization.png (PNG copy)> <./line_profit.png (PNG copy)> <./circle_
 profit.png (PNG copy)>]
-Underfull \hbox (badness 1509) in paragraph at lines 663--663
+Underfull \hbox (badness 1509) in paragraph at lines 661--661
 []\OT1/ptm/b/n/14.4 RELATED WORK AND COM-
  []
 
-[12 <./mytop_profit.png (PNG copy)>]
+[11 <./mytop_profit.png (PNG copy)>]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
-Underfull \hbox (badness 1655) in paragraph at lines 732--733
+Underfull \hbox (badness 1655) in paragraph at lines 730--731
 \OT1/ptm/m/n/10.95 ing, 2009. IPDPS 2009. IEEE In-ter-na-tional
  []
 
 
-Underfull \hbox (badness 3098) in paragraph at lines 733--734
+Underfull \hbox (badness 3098) in paragraph at lines 731--732
 \OT1/ptm/m/n/10.95 con-fer-ence on Elec-tronic com-merce. ACM,
  []
 
-[13]
-Underfull \hbox (badness 1221) in paragraph at lines 734--735
+[12]
+Underfull \hbox (badness 1221) in paragraph at lines 732--733
 \OT1/ptm/m/n/10.95 re-source al-lo-ca-tion. Uni-ver-sity of Cal-i-for-nia,
  []
 
 
-Underfull \hbox (badness 1484) in paragraph at lines 735--736
+Underfull \hbox (badness 1484) in paragraph at lines 733--734
 []\OT1/ptm/m/n/10.95 Bredin, Jonathan, David Kotz, and Daniela
  []
 
 
-Underfull \hbox (badness 2435) in paragraph at lines 736--737
+Underfull \hbox (badness 2435) in paragraph at lines 734--735
 []\OT1/ptm/m/n/10.95 Vickrey, William. "Coun-ter-spec-u-la-tion, auc-
  []
 
 
-Underfull \hbox (badness 1194) in paragraph at lines 737--738
+Underfull \hbox (badness 1194) in paragraph at lines 735--736
 []\OT1/ptm/m/n/10.95 Ausubel, Lawrence M., and Pe-ter Cram-ton.
  []
 
 
-Underfull \hbox (badness 2503) in paragraph at lines 737--738
+Underfull \hbox (badness 2503) in paragraph at lines 735--736
 \OT1/ptm/m/n/10.95 "Auc-tion-ing many di-vis-i-ble goods." Jour-nal
  []
 
 
-Underfull \hbox (badness 1005) in paragraph at lines 737--738
+Underfull \hbox (badness 1005) in paragraph at lines 735--736
 \OT1/ptm/m/n/10.95 of the Eu-ro-pean Eco-nomic As-so-ci-a-tion 2.23
  []
 
 Missing character: There is no ö in font ptmr7t!
 
-Underfull \hbox (badness 1132) in paragraph at lines 740--741
+Underfull \hbox (badness 1132) in paragraph at lines 738--739
 \OT1/ptm/m/n/10.95 sym-po-sium on The-ory of com-put-ing. ACM,
  []
 
 
-Overfull \hbox (0.79651pt too wide) in paragraph at lines 745--747
+Overfull \hbox (0.79651pt too wide) in paragraph at lines 743--745
 \OT1/ptm/m/n/10.95 module=Wiki&action=view&type=tool&name= 
  []
 
-[14] (./report.aux)
+[13] (./report.aux)
 
 LaTeX Warning: There were undefined references.
 
@@ -507,8 +494,8 @@ LaTeX Warning: There were multiply-defined labels.
 
  ) 
 Here is how much of TeX's memory you used:
- 3784 strings out of 493857
- 51356 string characters out of 1153305
+ 3781 strings out of 493857
+ 51330 string characters out of 1153305
  138881 words of memory out of 3000000
  7035 multiletter control sequences out of 15000+50000
  20030 words of font info for 44 fonts, out of 3000000 for 9000
@@ -524,9 +511,9 @@ mf-texlive/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texmf-texlive/
 fonts/type1/public/amsfonts/cm/cmsy6.pfb></usr/share/texmf-texlive/fonts/type1/
 urw/times/utmb8a.pfb></usr/share/texmf-texlive/fonts/type1/urw/times/utmr8a.pfb
 ></usr/share/texmf-texlive/fonts/type1/urw/times/utmri8a.pfb>
-Output written on report.pdf (14 pages, 660056 bytes).
+Output written on report.pdf (13 pages, 658586 bytes).
 PDF statistics:
- 107 PDF objects out of 1000 (max. 8388607)
+ 104 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
  71 words of extra memory for PDF output out of 10000 (max. 10000000)
 
