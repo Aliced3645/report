@@ -14,7 +14,7 @@
 
 \begin{document}
 
-\tableofcontents
+ \tableofcontents
 
 \title{SDN$^{2}$: Marketing System for Data-center Network Resource Allocation based on Software Defined Network}
 \author{Rui Zhou \and Shu Zhang}
@@ -22,27 +22,27 @@
 \maketitle
 
 \begin{abstract}
-In this report we present SDN$^{2}$, an auction-based Marketing \underline{S}ystem for \underline{D}atacenter \underline{N}etwork Resource Allocation based on \underline{S}oftware \underline{D}efined \underline{N}etworks.
+In this report we present SDN$^{2}$, an auction-based Marketing \underline{S}ystem for \underline{D}atacenter \underline{N}etwork Resource Allocation based on \underline{S}oftware \underline{D}efined \underline{N}etworks (SDN).
 Motivated by similar mechanism of auctions for resource allocation in other computer systems, we aim to 
-let users bid their network resources. Currently our focus mainly lays in bandwidth and latency for desired flows. Different from the only   
-bidding system for Network Resource existing in Google's Data-center\cite{google}, our system is based on Software Defined Network and takes the advantage
+let users bid their network resources. Currently our focus mainly lays in bandwidth and latency for   flows. Different from the only   
+bidding system dedicated  for Network Resource existing in Google's Data-center\cite{google}, our system is based on Software Defined Network and takes the advantage
 of the central controller and global network information. 
-Another aspect of our focus is on the allocation algorithm for the auctioneer. We proposed and investigated some 
-algorithms as well as evaluated the performances of some of them. 
+Another aspect of our focus is on the allocation algorithm for the auctioneer. We proposed and investigated couple 
+algorithms as well as evaluated the performances  of them. 
 \end{abstract}
 
 \section{INTRODUCTION}
 %resource allocation and network resource allocation in dcs
-Resource allocation is an important topic in system related area, especially in data centers where resources distribution heavily influences the performance 
+Resource allocation is an important topic in system related area, especially in data-centers where resources distribution heavily influences the performance 
 of the application running in the data-centers. Since the network resource is limited and application expense could be infinite, the idea of launching auctions on
 data-centers for applications to bid resources comes to existence. With the core of auction, some marketing mechanisms have been built for public or 
-private data-centers, such as AWS\cite{aws} or internal data-centers for large companies such as Google and Microsoft. While various types of marketing systems
-emerges, they primarily focus on the allocation of computation power and storage room, few of them cares enough about network resources, let along combining with the existence of SDN network. 
+private data-centers, such as Amazon Web Service (AWS) \cite{aws} or internal data-centers for large companies such as Google and Microsoft. While various types of marketing systems
+emerges, they primarily focus on the allocation of computation power and storage room, few of them cares enough about network resources, let along combining with the existence of the cutting-edge SDN network. 
 
 %sdn
-The emergence of SDN network   provides network manipulators with more powerful 
+The emergence of SDN network   provides network administrators with more powerful 
 ways to manage their networks. For example, the existence of NIB(Network Information Base) in Onix\cite{onix} could provide the upper layer with the global
-topology of the entire network just in a single manager machine.  SDN also provide the ability to configure the switches in the networks on the fly, thus a more dynamic way to bid and evolve the network could be built.
+topology of the entire network just in a single manager machine.  SDN also provides the ability to configure the switches in the networks on the fly, thus a more dynamic way to bid and evolve the network could be built.
 
 %this paper: an combination
 In this paper we combine the idea of auction in data-centers networking with the SDN technology so as to reach the goal of bidding network resources. 
@@ -56,7 +56,7 @@ Since we have the central information of the network, bidding and allocations of
 \end{figure}
 
 % overall work flow
-The general flow for each round of bidding starts from the bidders. Bidders first recognize their flow requirements in the near future, for example, they might need to reserve the resource for a flow 
+The general flow for each round of bidding starts from the bidders. Bidders first recognize their flow requirements in the (near) future, for example, they might need to reserve the resource for a flow 
 from host A to host B in the network with a certain amount of data to transfer, with the hope of minimum bandwidth and latency (QoS) guarantees in 
 a certain time period. After confirming these requirements, bidders send bidding requests to the auctioneer. The auctioneer collects requests for this 
 round and wait for the bidding clock to go off, saying it is time to calculate the allocation. With specific allocation algorithm, the auctioneer could
@@ -69,39 +69,39 @@ algorithms to allocation resources basing on requests, for different goals.
 
 % sections
 In section 2 we investigate some existing backgrounds that serves as inspiration or basement for this project. In sections 4 we conclude the contribution  of our work. 
-In section 5 the design and algorithms of the system are discussed and in the implementation is introduced in section 6. In section 7 we do some 
+In section 5 the design and algorithms of the system are discussed and in the implementation is introduced in section 6. In section 7 we present some 
 experiments and evaluation on the out-coming products. Since our system is still in prototype, in section 7 we have identified some extensible
-work which would be done in the future. And in section 8 we discuss some related work.
+work which could  be done in the future. Finally  in section 8 we discuss some related work.
 
 
 \section{KEYWORDS \& CATEGORIES}
 Data-center, Network Resource Allocation, Marketing and Auction, Software Defined Network.
 
 \section{BACKGROUND}
-In this section, we investigate existing data centers (mainly private data-centers and public data-centers) and their marketing and 
+In this section, we investigate existing data-centers (mainly private data-centers and public data-centers) and their marketing and 
 pricing models. Also, we introduce the existing techniques of SDN which is the base of our system. These investigations essentially
-inspired our idea of this project.
+inspired the idea of this project.
 
-\subsection{Datacenter Markets}
-There are generally two types of data centers, one is for-profit, public cloud data-centers, such as Amazon Web Services\cite{aws}, the other is private cloud
+\subsection{Datacenter Resource Markets}
+There are generally two types of data-centers, one is for-profit, public cloud data-centers, such as AWS\cite{aws}, the other is private cloud
 data-centers, like those operated by Google or Facebook. Although auction mechanisms could be applied to both, different scenarios results in diverse answers because of 
-their business models.  Although most of the models applies in computation and storage marketing, they serve the same principle for our Network Allocation System.
-% The following two paragraphs talks about the assumed behavior for the two types of data centers in this paper and our discussion are 
+their business models.  Although most of the models apply in computation and storage marketing, they serve the same principle for our Network Allocation System.
+% The following two paragraphs talks about the assumed behavior for the two types of data-centers in this paper and our discussion are 
 % based upon these behaviors.
 
 In a public cloud service, bidders are customers who use the cloud service. Take Amazon EC2 for example\cite{ec2}, Amazon revises prices for instances for all kinds
 of types. Three basic types are On-Demand Instances, Reserved Instances, which allows user to reserve a period of time for future uses and Spot Instances\cite{spot} whose values 
 fluctuate and allow customers to bid on them. Along this path, Amazon created other services like data transfer, elastic IP addresses, elastic load balancing, etc and 
 makes pricing policies for them. From Amazon's view, its pricing policies are so carefully revised so that they could maximize its profits. If a customer wants to bid for Amazon's 
-resources, her knowledge is pretty limited, and Amazon hides the data center details from customers and only expose pricing history as hints for users to bid, and the budget
+resources, her knowledge is pretty limited, and Amazon hides the data-center details from customers and only expose pricing history as hints for users to bid, and the budget
 of buyers are real currency. 
 
 In a private data-centers running inside IT companies, the customers are internal teams of companies who use the data-centers resources for the sake of their team and the companies.
 The operator's goal might be minimizing the cost while meeting business objectives, or may be efficient use of network resources. The users (teams), according to their priorities,
 are allocated different amounts of budget, which usually is virtual currency. Teams with more budget might use the data-centers resources in a higher share. The private data-centers 
-might perform as a autonomy market, whose prices of goods are totally determined by the market or self-adapted by the system. Bidders, with higher possibility, will be
+might perform as a autonomy market, whose prices of goods are totally determined by the market or self-adapted by the system. Bidders, with higher priorities, will be
 provided more detailed view of the data-centers conditions, such as dynamic traffic between servers or racks and static network topology, so that they could formulate their 
-bidding policies more sensible. 
+bidding policies more sensibly. 
 \subsection{Existing Pricing Mechanisms}
 We found that the value of goods which are to be traded in the market is the core issue when letting a market run. People may argue that in an auction,
 people could win the bidding by giving the highest amount of money per unit of resource. But sometimes it might be far more complex. Prices, in some cases,
@@ -112,11 +112,11 @@ The pricing methods for auctions in private and public data-centers are pretty d
 different. 
 \subsubsection{Public Cloud Pricing}
 Amazon\cite{aws} has set models for pricing in public cloud. AWS supports buy-at-once pricing for on-demand instances as well as auctions for resources
-for spot instances. For on-demand services, prices for instances are relatively higher and the good thing is that they are guaranteed to be provided to the buers.
+for spot instances. For on-demand services, prices for instances are relatively higher and the good thing is that they are guaranteed to be provided to the buyers.
 For Spot instances\cite{spot}, Amazon has set the base prices for instances. The prices are much lower (\$0.007 per hour versus \$0.060 per hour for on-demand instances).
 The prices are given by Amazon according to their costs and virtual equipments with different capacities will have different prices. Resources
 are provided in a combinatorial way, since it is meaningless to bid a single CPU without any memory or storage. But in some scenarios resources are not 
-sold in a combinational way, such as Elastic Load Balancing which only charges by the amount of data to be processed by the load balancer.
+sold in a denominational way, such as Elastic Load Balancing which only charges by the amount of data to be processed by the load balancer.
 \subsubsection{Private Cloud Pricing}
 Unlike AWS, prices per unit of resources in the private cloud data-centers probably will change in a dynamic way.  Systems like D'Agents\cite{dartmouth} and Google's Planet-wide 
 Clusters\cite{google} has adopted dynamic pricing and price of resources are updated periodically. Both the aforementioned systems uses dynamic prices to 
@@ -133,25 +133,25 @@ prices for parameters.
 \subsection{Software Defined Network}
 % software defined network and participatory network , a central view and participants
 While the data-centers technology evolves rapidly, \textbf{Software Defined Network (SDN)} has also been proposed as a
-stunning idea. By separating the control panel and the data panel, SDN   abstracts a supported network to be a networking system, which
-offers a central view of the networks as a graph and provides a central controller based on flows.
-Openflow is a dominating protocol used in SDN based Network systems which defines what is analog to the lower level API in an operating systems.
-And high level Networking systems such as NOX\cite{nox} and Floodlight\cite{floodlight}, and Nettle\cite{nettle} have been developed based on Openflow. SDN and
+stunning idea which is widely accepted as the future of network systems. By separating the control panel and the data panel, SDN   abstracts a supported network to be a networking system, which
+offers a central view of the networks as a graph and provides a central controller to manipulate the network at the granularity of flows.
+Openflow is a dominating lower-level protocol used in SDN based Network systems.
+And high level Networking systems such as NOX\cite{nox} , Floodlight\cite{floodlight}, and Nettle\cite{nettle} have been developed based on Openflow. SDN and
 Network systems has been actively developed in many universities. Companies such as Big Switch and JUNIPER have long 
 started to build SDN supported switches. It is believed that the future of network belongs to SDN. In this paper, we also take SDN as the approach towards the effective allocation of Network resources in data-centers. Recently Andrew et al' proposed \textbf{Participatory Networking(PNAE)}\cite{andrew}, 
-which focuses on the collection of participating entities.  Pane provides serves    analog to the system calls to networking systems, which 
+which focuses on the interaction with participating entities.  Pane provides service    analog to the system calls in networking systems, which 
 allow the  participating entities to provides hints to network systems and make changes to benefit their needs within allowed privileges.
-PANE' structure  nicely forms the base of our allocation mechanism.  None of the  systems aforementioned utilize a central view of the network, thus we argue that our approach comes with naturally more potential. In  fact, only our system supports seamless switch between strategies and this feature comes naturally with the sets up. 
+PANE' structure  nicely influenced the base of our allocation mechanism.  By selectively choose the bidding request to satisfy, SND$^2$ essentially gives  the end user the ability to influence the network  resource allocations in data-centers. All of the aforementioned feature are based on Software Defined Network.
 
 
 \section{CONTRIBUTION}
-Our contribution are mainly building a marketing prototype over SDN and reaching some sort of marketing fairness by our allocating algorithm .
+Our contribution is mainly the construction of a marketing prototype over SDN supporting various allocating algorithms.
 Also, our system could reach the performance requirement of real-time allocation, and supports further extension.
 % what is new ?
 %sdn
-\subsection{Floodlight and SDN based}
-Our work is mounted on Floodlight as its basement. With relatively mutual developed system, Floodlight and
-can be utilized in real world with few set ups thus make deployment of our project easier.
+\subsection{Floodlight and SDN Based}
+Our work is mounted on Floodlight as its basement. With relatively mature developed system, Floodlight and
+can be utilized in real world with few set ups thus make the deployment of our project easier.
 
 
 %fair on user/ flow / 
@@ -161,7 +161,7 @@ can be utilized in real world with few set ups thus make deployment of our proje
 Bob Briscoe in his paper\cite{bob} has bluntly pointed out that many fairness based on flows are pointless. He argues that
  flows are simply not the right
 entities to provide fairness to. We believe in his argument, but it is also arguable that sometimes fairness over flows
-can have its usages. 
+can have its usages. We do not want to get in to more details about fairness in current stage. However,
 % Algorithms such as max-min flow generally works well and many people are used to it. In our
 % work, the total amount of virtual currency/cash  available in our market mechanism resource allocation system at a 
 % particular time period is proportional to the existing resources available in that  particular period ,by the 
@@ -174,38 +174,37 @@ can have its usages.
 % among this  giant flow and others to achieve the maximum usage for all time over the entire system. Weights between users and flows can be 
 % maintained by adjusting the distribution of virtual cash. Every user has equal amount of virtual cash in a evenly 
 % weighted system and the properties of strategy-proof and envy free are automatically granted.
-A great benefits that we obtain from utilizing auction based Network resource allocation is that the fairness issue is no longer so relevant. It is up to the user to reserve and use the network resources. The Auctioneer treats everyone equally as they all have to bid.
+a great benefits that we obtain from utilizing auction based Network resource allocation is that the fairness issue is no longer so relevant. It is up to the user to reserve and use the network resources. The Auctioneer treats everyone equally as they all have to bid. At least the users feel fair, just like bidding in the real world.
 
 
 
 %speed -> search
 \subsection{Solve Fast}
-Different from allocation for computing resources, the allocation for Network resources requires a much high 
-decision speed. In \cite{Sai}, Sai proposed the pattern for agents to keep bidding and potentially face the failure. This works in computation and storage allocation but is
-probably not the best strategy in the design of our system. 
+Different from allocation for computing and storage resources, the allocation for Network resources requires a much high 
+decision speed due to the natural of network administration. In \cite{Sai}, Sai proposed the pattern for agents to keep bidding and potentially face the failure. This works in computation and storage allocation but is probably not the best strategy in the design of our system, as utilization and speed is also what we care most.
 % In our work, we had a close look at ideas in logical programming
 % and tries to seize the best out of it. Our system primarily operates as tree search in a solution space composed
 % with users' bids are our search are target to optimize a ``profit'' of certain kinds. There isn't much bidding failures
 % in our system. The amount of virtual cash a bidder spends mainly affect the priority of their resource allocation. 
-In our work, other than the adjustable time needed to gather the requests for a bidding round, our controller can choose to utilize algorithms and strategies that compute fast and obtain a solution that may not be optimal but good enough. The Income-Utilization Strategy we implemented is  $o(nlogn)$ in time complexity and linear in space thus can produce allocation really fast. Some of the computation such as latency validation of requests can even be done in parallel while the system is gathering bids. Thus we argue that given proper strategies, our system is scalable and fast.
+In our work, other than the adjustable time needed to gather the requests for a bidding round, our controller can choose to utilize algorithms and strategies that compute fast and obtain a solution that may not be optimal but good enough and satisfies as many requests as possible. The Income-Utilization Strategy we implemented is  $o(nlogn)$ in time complexity and linear in space thus can produce allocation really fast. Some of the computation such as latency validation of requests can even be done in parallel while the system is gathering bids. Thus we argue that given proper strategies, our system is scalable and fast. In addition, we suggest to use algorithms that focus on both income and utilization. Our Income-Utilization Index Strategy is a simple example that tries to achieve such goal.
 % In our observation, the major delay before the bidder could use the network would be the time needed 
 
 
-\subsection{Extendable Strategies}
+\subsection{Plugable Strategies}
 Strategies are nothing special but plug-gable modules that can be switched immediately. Although few strategies have been implemented,  
 Our system could potentially support multiple optimizing modes including : ``Short job first''. ``Maximun profits'', ``best utilization'',
-``most met deadlines'' and so on. It is up to the system manager to decide what to use.
+``most met deadlines'' and so on. It is up to the system manager to decide what to use. It would not be difficult in the future to category users into different strategies groups either.
 
 
 \section{SYSTEM DESIGN AND ALGORITHMS}
-
+In this section we introduce the design and architecture of our system.
 \subsection{Pre-Assumption}
 In order to let the system work, we have some pre-assumptions so as to limit the environment. First, we don't specify the unit of 
 currency. Although in practice the type of currency should be figured out whether real or artificial, in this system prototype we assumed
 the we present money as a LONG type of value. Secondly, we don't care about where and how users gain their money they use to bid. Although in
 some existing systems like \cite{ucsd}, all bidders are allocated money at first and then their wealth are adjusted by the bank profit and 
-social welfare mechanism, our scenario does not have an `invisible hand` which proforms as a government. Thirdly, our system only works on 
-networks with full deployment of SDN networks. Currently the sysetm does not support networks with multiple islands, some of which are 
+social welfare mechanism, our scenario does not implement an `invisible hand` or what performs as a government. Thirdly, our system only works on 
+networks with full deployment of SDN networks. Currently the system does not support networks with multiple islands, some of which are 
 OpenFlow enabled while others are not. Fourthly, we only constrain users to bid for the machine they reside. 
 So if a user in using a machine, he could only bid for flows starting from the using machine. Although supporting
 users to bid for other machines are not hard to achieve, we just want to limit the rights the bidders could hold in the network. Another thing 
@@ -218,7 +217,7 @@ the fail-over mechanism in the future.
 
 
 \subsection{Design and Architecture}
-In this section we introduce the design and architecture of our system,
+
 %  and also points out our solution to the cafeterias. Also, 
 we rule a protocol of exchanging bidding messages which runs in the application layer. There are two major  components of the system,
 one is running inside the Floodlight controller, which acts as the auctioneer and the other is running on the client machine, 
@@ -231,7 +230,7 @@ which performs as a bidding agent for the client. These two sides communicate us
 \label{overflow}
 \end{figure}
 The interaction between bidders and auctioneers is shown in Figure 2. The bidder sends a bidding request in each round, currently, the 
-system needs the user to fill in required fields, including his name, his bidding value, the destination of the flow he wants to bid,
+system needs the user to fill in at least some required fields, including his name, his bidding value, the destination of the flow he wants to bid,
 the minimum transform rate he accepts (in the unit of MB/s), the latency he accepts for a packet to 
 travel from the source to the destination and the start and end time of the transmission. If 
 some fields are what the bidder does not care about, for example the latency, he could just set a special value such as Float.MAX\_VALUE to that field. But 
@@ -246,7 +245,7 @@ path could satisfy the latency requirement, these verified routes, along with th
 the bidding request pool, waiting for the bidding round to come. Then for a certain period of time, the auction time arrives, all bidding requests
 in the pool are collected and calculated for their results. Then the results are sent to the bidders, which marks the end of the round.
 
-A special feature of our system is that we never over saturate any links. This means we simply do not allocate more than the network can accept, at the granularity of each switch port. The bidders can have to send the packets through a rate limiting box either in their bidding system or implemented as rules in the first switch that connected to that host. Given this design, it is nature that the latency will be overall consistent regardless of the actual traffic load. While this design also requests the strategies to be smarter to allocate more while avoid saturate the bottle neck.
+A special feature of our system is that we never over saturate any links. This means we simply do not allocate more than the network can accept, at the granularity of each switch port. The bidders  have to send the packets through a rate limiting box either in their bidding system or implemented as rules in the first switch that connected to that host. Given this design, it is nature that the latency will be overall consistent regardless of the actual traffic load. While this design also requests the strategies to be smarter to allocate more while avoid saturate the bottle neck.
 
 \begin{figure}[ht!]
 \centering
@@ -265,26 +264,26 @@ object and pass it to the Marketing Manager which lays in to logic layer, then t
 
 
 \subsubsection{The Bidding Protocol}
-There are generally four types of packets we use to pass mesages between bidders and auctioneer. In a typical data-centers, we assume the IP addresses 
-are highly clustered and irregular IPs does not appear. So first we assigns speicial IPs for the bidding protocol packets so that either side could 
-recoginze the special packets in the data plane. Then we serialize the packet informaiton in JSON. The reason we use JSON is that we want the protocol to
-be acoomodated to various machine and data presentation types. 
+There are generally four types of packets we use to pass messages between bidders and auctioneer. In a typical data-centers, we assume the IP addresses 
+are highly clustered and irregular IPs does not appear. So first we assigns special IPs for the bidding protocol packets so that either side could 
+recognize the special packets in the data plane. Then we serialize the packet information in JSON. The reason we use JSON is that we want the protocol to
+be accommodated to various machine and data presentation types. 
 
 The bidding request packet is used for the bidders to send their requests to the auctioneer. The bidder name is a String type in Java, and other 
 values are all Long (32 bits). Since we only allows users to bid 
 for a future period of time, the Start and End time fields in the packet must be positive values and they 
 are presented as the relative offset of time comparing with the current time (presented as a long value in the central controller and
-we assume the user could know the current time). The speicial source IP for the bidding request packet is 1.2.3.4. The bidding result packet is sent by the auctioneer to the 
-bidders. The speicial source IP is 1.2.3.4 and the bidding result is a boolean type and the allowed rate is a allocated rate which must be no smaller than the 
+we assume the user could know the current time). The special source IP for the bidding request packet is 1.2.3.4. The bidding result packet is sent by the auctioneer to the 
+bidders. The special source IP is 1.2.3.4 and the bidding result is a boolean type and the allowed rate is a allocated rate which must be no smaller than the 
 user's requested rate. The latency probe packet is used for the controller to probe the real-time latency between two nodes. The source and destination IP
 are set by the controller as the real IP of the two nodes (before sending the latency probe packets, the controller should establish rules on all
-switches on the path, using the two IP as matching fields, the out port for the last swtich is 6632 which directs the packet back to the controller).
-The Send Reminder Packet is used for reminding bidders to send their flows when their winning bidding time comes. The speicial source IP is 1.2.3.5. The 
-packet tells the controller where is the destination of the flow and the duration of this transmission. The reminding mechanism is facilited by the 
+switches on the path, using the two IP as matching fields, the out port for the last switch is 6632 which directs the packet back to the controller).
+The Send Reminder Packet is used for reminding bidders to send their flows when their winning bidding time comes. The special source IP is 1.2.3.5. The 
+packet tells the controller where is the destination of the flow and the duration of this transmission. The reminding mechanism is facilitated by the 
 timers so that the bidders don't need to record what they have won. The Marketing Manager records these information for the bidder and when the start time 
 of their winning bids arrives, the reminder packet is sent. When the bidder receives the reminder packet, it will start sending UDP/TCP packets. The 
 bidder does not need to set the route and rate limiters because the controller has already set the rules in switches on the route and set a rate 
-limiter on one queue of the first swtich of the flow's path.
+limiter on one queue of the first switch of the flow's path.
 
 \begin{figure}[ht!]
 \centering
@@ -303,7 +302,7 @@ limiter on one queue of the first swtich of the flow's path.
 \end{figure}
 
 The internal modules of the Marketing Manager is shown in Figure 5. The marketing manager receives and sends bidding related objects passed by 
-or to the lower level bidding controller. The Auctionner object is a singleton, which maintains all bidding requests of this round (it also
+or to the lower level bidding controller. The Auctioneer object is a singleton, which maintains all bidding requests of this round (it also
 has a list of coming bidding requests of next round in case it is calculating the allocation for this round but some bidders have started
 bidding for the next round), the information of all bidders who have participated in the bidding from the start, and the results of last round.
 It also maintains the current allocation strategy. The bidding clock is in pace of the real world time. It sends a signal every 10 seconds (the 
@@ -313,11 +312,11 @@ Index based strategy, and the third is a mutation of the previous one, which aim
 important part is the Scheduler module, which serves as our Network Informantion Base. The Scheduler is responsible for record all historic 
 allocations (mainly their starting and ending time, their routes and their sending rate). The scheduler provides an interface for allocation methods
 to verify whether an bidding request is valid in that certain time period by doing the checking using its recorded information. Lastly, the Marketing
-Manager holds a seperate module for system administrators to use REST APIs to set and test some functionalities.
+Manager holds a separate module for system administrators to use REST APIs to set and test some functionalities.
 
 \subsubsection{User side bidding agent}
 As long as the potential bidders could follow the bidding protocol, they could build their client bidding program (the bidding agent) in any language
-in any form. But there ar some hints for buiding the bidding agent. One is the bidders have to listen to potential incoming packets and analyze 
+in any form. But there are some hints for building the bidding agent. One is the bidders have to listen to potential incoming packets and analyze 
 their IP address to see whether they are bidding messages. Another is that the user has to construct the bidding packet by himself, so he could 
 manipulate all fields of the packet. 
 
@@ -329,7 +328,7 @@ In our system, the marketing manager can utilize different strategies to selecti
 
 We have successfully implemented three strategies: first come and first serve, income and utilization index(formally called estimated index), 
 and utilization index. Our evaluation shows that our income and utilization index can achieve significant better performance regarding the
- combination utilization and income comparing to the very natural first come first serve model which is sort of the standard naive philosophy 
+ combination of utilization and income comparing to the very natural first come first serve model which is sort of the standard naive philosophy 
 to allocate network resources. Here is the algorithm we developed to provide the income-utilization index of a given route: 
 
 \providecommand{\SetAlgoLined}{\SetLine}
@@ -355,10 +354,10 @@ to allocate network resources. Here is the algorithm we developed to provide the
 return index\;
 \end{algorithm}
 
-Each routes in collected in a bidding round thus is indexed and sorted, we then go over the list from highest index to lowest index, trying to satisfy as many routes as we can in that order.
-Although no formal mathematical proof is provided, we take the  intuition that this approach encourages users to bid for the less contingent areas of the network at a granularity of switch ports, but also allows user to pay more and make reservation on bottleneck links. Our later evaluation section will show that this algorithms works well in practice.
+Each routes  collected in a bidding round thus is indexed and sorted, we then go over the list from highest index to lowest index, trying to satisfy as many routes as we can in that order when a round has ended.
+Although no formal mathematical proof is provided yet, we take the  intuition that this approach encourages users to bid for the less saturated areas of the network at a granularity of switch ports, but also allows user to pay more and make reservation on bottleneck links. Our later evaluation section will show that this algorithms works well in practice.
 
-If we change the  molecular in the equation of computing the Income-Utilization Index to 1, we have eliminated the affect of users' bidding price thus only focus on encouraging balanced utilization of the entire network. This strategy is indeed our utilization index implementation, which was also  tested by us. However we do not provide more discussion around this approach other than the information that in our test, solo utilization index not only fails obviously  in cumulative income but also sometimes fails in optimizing overall utilization of the network. The exact reason remains un-investigated, but we argue that it may perform better in bigger topologies with more bottle links than our test topologies.
+If we change the  molecular in the equation of computing the Income-Utilization Index to 1, we have eliminated the affect of users' bidding price thus only focus on encouraging balanced utilization of the entire network. This strategy is indeed our utilization index implementation, which was also  tested by us. However we do not provide more discussion around this approach other than the information that in our test, solo utilization index not only fails obviously  in cumulative income but also sometimes fails in optimizing overall utilization of the network. The exact reason remains un-investigated due to the shortage of time, but we argue that it may perform better in bigger topologies with more bottle links than our test topologies.
 
 \subsubsection{Envisioned Strategies}
 We have some envisioned strategies that we did not have the time to implemented, 
@@ -450,8 +449,6 @@ Remain() is a function provided by NIB to query the remaining bandwidth of that 
  
 %\end{algorithm}
 
-
-
 %sigh .... the following is not achieved
 
 % \subsection{Criteria of the System}
@@ -532,12 +529,12 @@ Remain() is a function provided by NIB to query the remaining bandwidth of that 
 
 \section{IMPLEMENTATION DETAILS}
 Our prototype system is consisted of two programs, one resides in the FloodLight and another is the bidding agent we build in Python. There are roughly 
-6000 lines of Java code and 500 lines of Python code. The low level marketing controller is a Floodlight listener listening for any PACKET\_IN messages.
+6000 lines of Java code and 500 lines of Python code, all written and re-written in two months. The low level marketing controller is a Floodlight listener listening for any PACKET\_IN messages.
 In order to let our special bidding packet with special IP to be transferred to the listener, we modified the floodlight controller (implementation 
-of IFloodlightProvider) to let it not filter out the bidding mesasge packets. The route is presented by the Floodlight as a list of switch-port pairs,
-and Floodlight provides an interface to list all possible routes between any two switches, so an additional hashmap should be used to recordthe host machiens
-and their attachment points. In the client side, we use scapy to construct packets and forcely push them into the ethernet, so as to ensure the packet 
-could be pushed to the attached switch. Then we use pcapy to sniff all packets coming and select packets with IP address 1.2.3.4 or 1.2.3.5. There are mainly
+of IFloodlightProvider) to let it not filter out the bidding message packets. The route is presented by the Floodlight as a list of switch-port pairs,
+and Floodlight provides an interface to list all possible routes between any two switches, so an additional hashmap should be used to record the host machines
+and their attachment points. In the client side, we use Scapy\cite{scapy}  to construct packets and forcely push them into the ethernet, so as to ensure the packet 
+could be pushed to the attached switch. Then we use Pcapy\cite{pcapy} to sniff all packets coming and select packets with IP address 1.2.3.4 or 1.2.3.5. There are mainly
 two threads, one is for sending bidding requests and the other is listening to the coming packets in UDP. 
 
 
@@ -592,7 +589,7 @@ We call it complex because it contains a circle and a line.
 \centering
 \includegraphics[width=90mm]{mytopo_utilization.png}
 \caption{The utilization comparison in complex topology}
-The aggressiveness of FCFS is very obvious, and FCFS appreantly does not do well regarding the long run.
+The aggressiveness of FCFS is very obvious, and FCFS eventually does not do well regarding the long run.
 \label{overflow}
 \end{figure}
 
@@ -628,22 +625,22 @@ further developed and researched. Some particular interesting potential future w
 \subsection{Stability Issues}
 A significant unsatisfactory we have so far is the stability issue when we test on our Mininet testbed. 
 The stability issues happens in multiple forms.  One clear understood common reason the system fails is when the user 
-started to bid before the internal controller configure everything it needs. The coming in bidding packet could result in
- exceptions in various place of the system, depending the stage the system is currently within intiliazation phase. 
-Besides the obvious easy to fix issues, we sometimes experience random time out of virtual switches simulated by mininet. 
+started to bid before the internal controller configure everything it needs. The coming-in bidding packet could result in
+ exceptions in various place of the system, depending the stage the system is currently at within initialization phase. 
+Besides this obvious easy to fix issues, we sometimes experience random time out of virtual switches simulated by mininet. 
 A very common issue is that, floodlight controller would suddenly timeout the netty channel through which a switch is connected, 
 due to read time out. Almost instantly after the switch was timed out and disconnected, the controller will detect a new switch 
 in mininet, with different real machine port number. This issue happens occasionally, its reason is unknown yet and could resides
- in at least one of floodlight, netty framwork, mininet  or the reference swicth implementation.
+ in at least one of floodlight, netty framwork, mininet  or the Stanford reference switch implementation.
 
 \subsection{More Tests and immigrate to real world test bed}
-Because of the limit of time and the delay caused by bugs hard to trace(ie, the switch loss bug mentioned aforehead), 
+Because of the limit of time and the delay caused by bugs hard to trace(ie, the switch loss bug mentioned previously), 
 we did not have time to test our system with real switches. It is definitely an item into our todo list and needs to be done in the future.
 
 \subsection{Support of Partial Bidding Request}
 In our current settings, users can make request without any requirements on Latency. The user could simply indicate that the latency 
 is not important and the bidding agent  could translate as and Long.MAX\_VALUE to put into the request message. However,
- we have not provided a standard when the client only have request for latency but not bandwidth. As a bandwidth of zero make
+ we have not provided a standard solution when the client only have request for latency but not bandwidth. As a bandwidth of zero make
  no sense regardless of its associated latency, this problem may further redirected to be to help user determine their needs for bandwidth.
 
 \subsection{ Request Translation}
@@ -652,15 +649,15 @@ Most of the users are not able to provide an information detailed enough to asse
 For example, user Bob may only want to download this one Gigabtyte movie tonight so he could watch it tomorrow, 
 thus the latency is not so relevant and the shape of his allocation is elastic and dividable. Or 
 Alice may want to schedule a phone call  after five minutes and does not really want to specify an end time for it, 
-as she does not know in advance. Her request might be composed of an minimun latency, an minimum bandwidth in an extendable session. 
+as she does not know in advance. Her request might be composed of an minimum latency, an minimum bandwidth in an extendable session. 
 All those real world requests need to be translated by our bidding agent to fits in our bidding system, and our bidding system
  could extend its rules to fit more complex and realistic scenarios. 
 
 \subsection{ Request Predication}
-Yet the biggest gap between our system to widely pratical usage is that most of the regular users may not want to make a bid, 
+Yet another  big gap between our system to widely practical deployment  is that most of the regular users may not want to make a bid, 
 either not able to or no bother to. Thus a great break through that will benefit our system greatly would be enable our bidding
  agent to bid for the users by predicting the potential requests.  Prediction of user requests is solo a much harder problem that 
-people are trying to tackle(example ref paper), and its advance could benefit not only our data-centers marketing system but also many 
+people are trying to tackle, and its advance could benefit not only our data-centers marketing system but also many 
 other existing systems. But as aforementioned, it is generally very hard to achieve in current state of art.
 
 \section{RELATED WORK AND COMPARISON}
@@ -677,7 +674,7 @@ allocation.
 
 % enormous number of papers have discussed the resource allocation in clusters,
 % regarding the computation resource, few on NETwork 
-Allocating \textbf{computing and storage} resources such as Cpus and Memory
+Allocating  computing and storage  resources such as Cpus and Memory
  in clusters and date-centers has been a popular topic widely discussed. Researchers have proposed and implemented
 various algorithms to achieve fairness and efficiency among different entities. 
 %{eaxmple papers} 
@@ -689,7 +686,7 @@ Artur Czumaj el at'\cite{Artur} proposed  the first thorough theoretical study o
 price of selfish routing in server farms for general cost function, giving the hypothesis that 
 distributed entities in data-centers are selfishly motivated.  
 Ali Ghodsi el at\cite{Ali} presented fair allocation regarding dominant resources of multiple types
-in a data center clusters.
+in a data-center clusters.
 Sai Rahul Reddy P\cite{Sai} in his Master's thesis proposed combined time and budget optimized auction 
 algorithms in grid computing. 
 
@@ -699,24 +696,26 @@ latency are as important as the allocation of computing and memory resources. Co
 thus are entitled to allocation based on market mechanism, so is network resources. This is actually intuitive 
 and commonly accepted patterns in real life. Phone carries would sell you a phone for very cheap price and make 
 benefits from cellular services, this is a typical example in which the importance of allocation of network resource
- exceed allocation of computation and storage. In data centers, inappropriate abusing of network resources can results
+ exceed allocation of computation and storage. In data-centers, inappropriate abusing of network resources can results
 in the failure of the whole system. It has noticed by network administrators that naively running TCP
 between hosts can leads to huge overhead on lost packets. Domain specific algorithms like DCTCP\cite{Mohammad} are proposed and applied
 in data-centers to effectively avoid collapse and keep traffic moving. But a more agile control was still very hard
 to reach due to the distributed nature of inter connected systems, which lacks of a central controller with
 a overview for the entire network and the needs of each entities are not really be collected and analyzed to form a strategy. The entire network also do not seek to optimize anything in general.
-It would be great if we can have a central view of the network which contact with each participating hosts in the network and allocate resources to them efficiently. Note that
+It would be great to have a central view of the network which contact with each participating hosts in the network and allocate resources to them efficiently. Note that
 allocation of network resources often requires orders of  magnitude faster than allocation resources in Map-reduce style 
-systems due to the fast nature of network transmission.  Thus regarding the allocation resource type, our system is very different but necessary.    
+systems due to the fast nature of network transmission.  
+
+Regarding the previous discussion, our system is a very different and necessary step towards a more completed market system   in data-centers. It is not necessary that our system will greatly change what is existing, but we think it make more sense as a good completion of what is missing.
 
 
 
 \section{CONCLUSION}
 
-This project is so awesome, shu and ray are so great, please give us A. thanks. Just kidding.
+In this Article, we studied existing marketing and pricing schemes utilized in data-centers, and then presented SDN$^2$, the system we built to enable auction for network resource allocation. Although SDN$^2$ is still a  nascent prototype, it provides a great start point and an extensible platform. We believe that with a few further development SDN$^2$ could be soon utilized in real world and provide its values to data-center resource management.
 
 \section{ACKNOWLEDGMENT}
-Thanks Andrew Forguson and Rodrigo Fonseca. Special thanks to silao, who ate my sushi.
+Thanks to Andrew Ferguson and Rodrigo Fonseca, who have provided great help through the entire project.
 
 \begin{thebibliography}{99}
   \bibliographystyle{unsrt} 
@@ -741,13 +740,17 @@ Thanks Andrew Forguson and Rodrigo Fonseca. Special thanks to silao, who ate my 
  \bibitem{Artur} Czumaj, Artur, Piotr Krysta, and Berthold Vöcking. "Selfish traffic allocation for server farms." Proceedings of the thiry-fourth annual ACM symposium on Theory of computing. ACM, 2002.
  \bibitem{Ali} Ghodsi, Ali, et al. "Dominant resource fairness: fair allocation of multiple resource types." USENIX NSDI. 2011.
  \bibitem{Sai} Reddy, Sai Rahul. "Market economy based resource allocation in grids." Master's thesis, Indian Institute of Technology, Kharagpur, India (2006).
- \bibitem{Mohammad} Alizadeh, Mohammad, et al. "Data center tcp (dctcp)." ACM SIGCOMM Computer Communication Review 40.4 (2010): 63-74.
+ 
+ \bibitem{scapy}  http://www.secdev.org/projects/scapy/ 
+ \bibitem{pcapy}  http://corelabs.coresecurity.com/index.php?\\
+module=Wiki\&action=view\&type=tool\&name=\\Pcapy 
+\bibitem{Mohammad} Alizadeh, Mohammad, et al. "Data center tcp (dctcp)." ACM SIGCOMM Computer Communication Review 40.4 (2010): 63-74.
  \bibitem{sdn} McKeown, Nick. "Software-defined networking." INFOCOM keynote talk, Apr (2009).
  \bibitem{nox} Gude, Natasha, et al. "NOX: towards an operating system for networks." ACM SIGCOMM Computer Communication Review 38.3 (2008): 105-110.
  \bibitem{frenetic} Foster, Nate, et al. "Frenetic: A network programming language." ACM SIGPLAN Notices 46.9 (2011): 279-291.
  \bibitem{nettle} Voellmy, Andreas, and Paul Hudak. "Nettle: Taking the sting out of programming network routers." Practical Aspects of Declarative Languages. Springer Berlin Heidelberg, 2011. 235-249.
  \bibitem{andrew} Ferguson, Andrew D., et al. "Participatory networking." Proc. Hot-ICE 12 (2012).
- \bibitem{bob} fairness paper
+
 
 \end{thebibliography}
 
