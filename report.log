@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2012.5.16)  13 MAY 2013 23:47
+This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2012.5.16)  14 MAY 2013 00:12
 entering extended mode
  %&-line parsing enabled.
 **report.tex
@@ -352,162 +352,133 @@ Underfull \hbox (badness 10000) in paragraph at lines 338--357
  []
 
 [8]
-Underfull \hbox (badness 10000) detected at line 379
-[][]
+Underfull \hbox (badness 1043) in paragraph at lines 543--548
+\OT1/ptm/m/n/10.95 We have tested the per-for-mance with the aid of
+ []
+
+<line.png, id=39, 441.65pt x 223.83624pt>
+File: line.png Graphic file (type png)
+ <use line.png>
+<circle.png, id=40, 454.69875pt x 380.42125pt>
+File: circle.png Graphic file (type png)
+ <use circle.png>
+<mytopo.png, id=41, 533.995pt x 458.71375pt>
+File: mytopo.png Graphic file (type png)
+ <use mytopo.png>
+<circle_utilization.png, id=42, 634.37pt x 390.45876pt>
+File: circle_utilization.png Graphic file (type png)
+
+<use circle_utilization.png>
+Overfull \hbox (21.1973pt too wide) in paragraph at lines 577--578
+ [][] 
+ []
+
+<line_utilization.png, id=43, 637.38126pt x 388.45125pt>
+File: line_utilization.png Graphic file (type png)
+
+<use line_utilization.png>
+Overfull \hbox (21.1973pt too wide) in paragraph at lines 584--585
+ [][] 
+ []
+
+<mytopo_utilization.png, id=44, 624.3325pt x 381.425pt>
+File: mytopo_utilization.png Graphic file (type png)
+
+<use mytopo_utilization.png>
+Overfull \hbox (21.1973pt too wide) in paragraph at lines 591--592
+ [][] 
+ []
+
+<line_profit.png, id=45, 637.38126pt x 391.4625pt>
+File: line_profit.png Graphic file (type png)
+ <use line_profit.png>
+Overfull \hbox (21.1973pt too wide) in paragraph at lines 599--600
+ [][] 
+ []
+
+<circle_profit.png, id=46, 626.34pt x 385.44pt>
+File: circle_profit.png Graphic file (type png)
+ <use circle_profit.png>
+Overfull \hbox (21.1973pt too wide) in paragraph at lines 607--608
+ [][] 
+ []
+
+<mytop_profit.png, id=47, 654.445pt x 394.47375pt>
+File: mytop_profit.png Graphic file (type png)
+ <use mytop_profit.png>
+Overfull \hbox (21.1973pt too wide) in paragraph at lines 615--616
+ [][] 
  []
 
 
-Underfull \hbox (badness 10000) detected at line 385
-[][]
+Underfull \hbox (badness 10000) in paragraph at lines 621--621
+[]\OT1/ptm/b/n/14.4 DISCUSSION AND FU-TURE
  []
 
-
-Underfull \hbox (badness 10000) in paragraph at lines 371--386
-
- []
+[9]
+Overfull \vbox (7.90677pt too high) has occurred while \output is active []
 
 
-Overfull \hbox (7.54552pt too wide) detected at line 421
-[] \OML/cmm/m/it/10.95 x[] \OMS/cmsy/m/n/10.95 ^^C \OML/cmm/m/it/10.95 R[]:min[
-]andwidth < sp:remainRate
- []
-
-
-Underfull \hbox (badness 10000) detected at line 423
-[][]
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 388--424
-
+[10 <./line.png (PNG copy)> <./circle.png (PNG copy)> <./mytopo.png (PNG copy)>
+ <./circle_utilization.png (PNG copy)> <./line_utilization.png (PNG copy)> <./m
+ytopo_utilization.png (PNG copy)>] [11 <./line_profit.png (PNG copy)> <./circle
+_profit.png (PNG copy)> <./mytop_profit.png (PNG copy)>]
+Underfull \hbox (badness 1509) in paragraph at lines 664--664
+[]\OT1/ptm/b/n/14.4 RELATED WORK AND COM-
  []
 
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [9]
-Underfull \hbox (badness 1043) in paragraph at lines 517--522
-\OT1/ptm/m/n/10.95 We have tested the per-for-mance with the aid of
- []
-
-<line.png, id=46, 441.65pt x 223.83624pt>
-File: line.png Graphic file (type png)
- <use line.png>
-<circle.png, id=47, 454.69875pt x 380.42125pt>
-File: circle.png Graphic file (type png)
- <use circle.png>
-<mytopo.png, id=48, 533.995pt x 458.71375pt>
-File: mytopo.png Graphic file (type png)
- <use mytopo.png>
-<circle_utilization.png, id=49, 634.37pt x 390.45876pt>
-File: circle_utilization.png Graphic file (type png)
-
-<use circle_utilization.png>
-Overfull \hbox (21.1973pt too wide) in paragraph at lines 551--552
- [][] 
- []
-
-<line_utilization.png, id=50, 637.38126pt x 388.45125pt>
-File: line_utilization.png Graphic file (type png)
-
-<use line_utilization.png>
-Overfull \hbox (21.1973pt too wide) in paragraph at lines 558--559
- [][] 
- []
-
-<mytopo_utilization.png, id=51, 624.3325pt x 381.425pt>
-File: mytopo_utilization.png Graphic file (type png)
-
-<use mytopo_utilization.png>
-Overfull \hbox (21.1973pt too wide) in paragraph at lines 565--566
- [][] 
- []
-
-<line_profit.png, id=52, 637.38126pt x 391.4625pt>
-File: line_profit.png Graphic file (type png)
- <use line_profit.png>
-Overfull \hbox (21.1973pt too wide) in paragraph at lines 573--574
- [][] 
- []
-
-<circle_profit.png, id=53, 626.34pt x 385.44pt>
-File: circle_profit.png Graphic file (type png)
- <use circle_profit.png>
-Overfull \hbox (21.1973pt too wide) in paragraph at lines 581--582
- [][] 
- []
-
-<mytop_profit.png, id=54, 654.445pt x 394.47375pt>
-File: mytop_profit.png Graphic file (type png)
- <use mytop_profit.png>
-Overfull \hbox (21.1973pt too wide) in paragraph at lines 589--590
- [][] 
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 595--595
-[]\OT1/ptm/b/n/14.4 DISCUSSION AND FU-TURE
- []
-
-[10 <./line.png (PNG copy)> <./circle.png (PNG copy)> <./mytopo.png (PNG copy)>
-] [11 <./circle_utilization.png (PNG copy)> <./line_utilization.png (PNG copy)>
- <./mytopo_utilization.png (PNG copy)> <./line_profit.png (PNG copy)> <./circle
-_profit.png (PNG copy)>]
-Underfull \vbox (badness 3323) has occurred while \output is active []
-
-
-Underfull \hbox (badness 1509) in paragraph at lines 638--638
-[]\OT1/ptm/b/n/14.4 RELATED WORK AND COM-
- []
-
-[12 <./mytop_profit.png (PNG copy)>]
-Underfull \hbox (badness 1655) in paragraph at lines 705--706
+ [12]
+Underfull \hbox (badness 1655) in paragraph at lines 731--732
 \OT1/ptm/m/n/10.95 ing, 2009. IPDPS 2009. IEEE In-ter-na-tional
  []
 
 
-Underfull \hbox (badness 3098) in paragraph at lines 706--707
+Underfull \hbox (badness 3098) in paragraph at lines 732--733
 \OT1/ptm/m/n/10.95 con-fer-ence on Elec-tronic com-merce. ACM,
  []
 
 
-Underfull \hbox (badness 1221) in paragraph at lines 707--708
+Underfull \hbox (badness 1221) in paragraph at lines 733--734
 \OT1/ptm/m/n/10.95 re-source al-lo-ca-tion. Uni-ver-sity of Cal-i-for-nia,
  []
 
 
-Underfull \hbox (badness 1484) in paragraph at lines 708--709
+Underfull \hbox (badness 1484) in paragraph at lines 734--735
 []\OT1/ptm/m/n/10.95 Bredin, Jonathan, David Kotz, and Daniela
  []
 
 
-Underfull \hbox (badness 2435) in paragraph at lines 709--710
+Underfull \hbox (badness 2435) in paragraph at lines 735--736
 []\OT1/ptm/m/n/10.95 Vickrey, William. "Coun-ter-spec-u-la-tion, auc-
  []
 
 
-Underfull \hbox (badness 1194) in paragraph at lines 710--711
+Underfull \hbox (badness 1194) in paragraph at lines 736--737
 []\OT1/ptm/m/n/10.95 Ausubel, Lawrence M., and Pe-ter Cram-ton.
  []
 
 
-Underfull \hbox (badness 2503) in paragraph at lines 710--711
+Underfull \hbox (badness 2503) in paragraph at lines 736--737
 \OT1/ptm/m/n/10.95 "Auc-tion-ing many di-vis-i-ble goods." Jour-nal
  []
 
 
-Underfull \hbox (badness 1005) in paragraph at lines 710--711
+Underfull \hbox (badness 1005) in paragraph at lines 736--737
 \OT1/ptm/m/n/10.95 of the Eu-ro-pean Eco-nomic As-so-ci-a-tion 2.23
  []
 
-[13]
 Missing character: There is no ö in font ptmr7t!
 
-Underfull \hbox (badness 1132) in paragraph at lines 713--714
+Underfull \hbox (badness 1132) in paragraph at lines 739--740
 \OT1/ptm/m/n/10.95 sym-po-sium on The-ory of com-put-ing. ACM,
  []
 
-[14] (./report.aux)
+[13] [14
+
+] (./report.aux)
 
 LaTeX Warning: There were multiply-defined labels.
 
@@ -515,11 +486,11 @@ LaTeX Warning: There were multiply-defined labels.
 Here is how much of TeX's memory you used:
  3782 strings out of 493857
  51342 string characters out of 1153305
- 137877 words of memory out of 3000000
+ 139877 words of memory out of 3000000
  7033 multiletter control sequences out of 15000+50000
  20030 words of font info for 44 fonts, out of 3000000 for 9000
  714 hyphenation exceptions out of 8191
- 26i,18n,32p,730b,329s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 26i,12n,32p,730b,279s stack positions out of 5000i,500n,10000p,200000b,50000s
 {/usr/share/texmf-texlive/fonts/enc/dvips/base/8r.enc}</usr/share/texmf-texli
 ve/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texmf-texlive/fonts/ty
 pe1/public/amsfonts/cm/cmmi10.pfb></usr/share/texmf-texlive/fonts/type1/public/
@@ -530,7 +501,7 @@ mf-texlive/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texmf-texlive/
 fonts/type1/public/amsfonts/cm/cmsy6.pfb></usr/share/texmf-texlive/fonts/type1/
 urw/times/utmb8a.pfb></usr/share/texmf-texlive/fonts/type1/urw/times/utmr8a.pfb
 ></usr/share/texmf-texlive/fonts/type1/urw/times/utmri8a.pfb>
-Output written on report.pdf (14 pages, 659948 bytes).
+Output written on report.pdf (14 pages, 658039 bytes).
 PDF statistics:
  107 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)

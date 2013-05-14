@@ -363,64 +363,92 @@ If we change the  molecular in the equation of computing the Income-Utilization 
 \subsubsection{Envisioned Strategies}
 We have some envisioned strategies that we did not have the time to implemented, 
 one of them is indeed seeking for the optimal income in a strict way, some packages like SuanShu and CPLEX 
-could help we put it into code into near future, the algorithm is decribed as following :
+could help we put it into code into near future.
 
-\providecommand{\SetAlgoLined}{\SetLine}
-\providecommand{\DontPrintSemicolon}{\dontprintsemicolon}
-\vspace{5mm}
-\begin{algorithm}[H]
+There are several steps for the optimization algorithm. First we establish a vector presenting all bidding requests 
+received for a typical round R: 
+$$( R_{1} ,R_{2} ,R_{3},...,R_{n} )$$
+
+And we also initialize a vector of results whose members are corresponding to the members of R representing whether 
+we will permit the request : 
+$$(x_{1}, x_{2}, x_{3}, ...,x_{n})$$
+
+Then we order R by the starting time of these members. Next, we group the requests by their requested time. For each 
+member $R_{i}$ of R, we get its ending time, and for all following requests starting from $R_{i+1}$, if their
+starting times are smaller than the ending time of $R_{i}$, these are grouped with R to form a time-overlapping group
+of requests. So when finishing the traversal, we get a bunch of time-overlapping groups of requests.
+
+Then, we subdivide them by the topology. For each time-overlapping group, we iterate all requests and get the routes for their allocation
+(To simplify, in this algorithm we assume there is only one possible route for a request). Then, for each route, we could get thier elements,
+which are switch-port pairs.Then, for each time-oeverlapping group, we create a hashmap, whose keys are switch-port pairs, and values are 
+a list of requests who bypass the switch-ports in that period of time. Then at last, we merge hashmaps from different time-overlapping groups,
+to form a big hashmap, whose keys are the switch-port pairs plus time period.
+
+So now we could set up the optimization goal, which is to maximize:
+ $$ V((x_{1}, x_{2}, x_{3}, ...,x_{n}) = \sum_{i=1}^{n} x_{i} * R_{i}.value$$
+
+And the constrants are, for all members in the final hashmap,
+ $$ \sum_{i=1}^{n} x_{i'} * R_{i'}.min_bandwidth < Remain(sp) $$ 
+which sp is a swtich-port pair for the member, 
+Remain() is a function provided by NIB to query the remaining bandwidth of that switch port in certain time period.
+
+
+%\providecommand{\SetAlgoLined}{\SetLine}
+%\providecommand{\DontPrintSemicolon}{\dontprintsemicolon}
+%\vspace{5mm}
+%\begin{algorithm}[H]
 
 % \DontPrintSemicolon
-\SetAlgoLined
- \KwData{Bidding requests received for a typical auction round, presented by a vector R:
- $$( R_{1} ,R_{2} ,R_{3},...,R_{n} )$$}
- \KwResult{A corresponding vector with each member a binary value indicating for each bidding request 
-whether or not to accept their requests. Presented as: $$(x_{1}, x_{2}, x_{3}, ...,x_{n})$$ }
- \end{algorithm}
-\begin{algorithm}[H]
- \For{each request in the request vector}{
-    rank request by their starting time, get the modified reqeust vector R':
-     $$( R_{1'} ,R_{2'} ,R_{3'},...,R_{n'} )$$
- }
- \end{algorithm}
+%\SetAlgoLined
+% \KwData{Bidding requests received for a typical auction round, presented by a vector R:
+% }
+% \KwResult{A corresponding vector with each member a binary value indicating for each bidding request 
+%whether or not to accept their requests. Presented as: $$(x_{1}, x_{2}, x_{3}, ...,x_{n})$$ }
+% \end{algorithm}
+%\begin{algorithm}[H]
+% \For{each request in the request vector}{
+%    rank request by their starting time, get the modified reqeust vector R':
+%     $$( R_{1'} ,R_{2'} ,R_{3'},...,R_{n'} )$$
+% }
+% \end{algorithm}
 
 
-\begin{algorithm}[H]
-\caption{Imcome Optimization Algorithm}
- Create G as the container is used to store all requests with overlapped request time period \\
+%\begin{algorithm}[H]
+%\caption{Imcome Optimization Algorithm}
+% Create G as the container is used to store all requests with overlapped request time period \\%
+%
+% \For{each request r in R'}{
+%  \For{each request r' in requests other than r in R'}{
+%    \If{ r'.startTime $<$ r.endTime}{
+%     group r' into r's time intersection group g
+%    }
+%  }
+%  add g into G
+% }
 
- \For{each request r in R'}{
-  \For{each request r' in requests other than r in R'}{
-    \If{ r'.startTime $<$ r.endTime}{
-     group r' into r's time intersection group g
-    }
-  }
-  add g into G
- }
-
- create a container G' for grouping requests intersected with switch-port pair in their sharing time period \\
- \For{each group g in G}{
-  \For{each request r in g}{
-   \For{ each switch-port pair sp in the route of r }{
-    \eIf{ sp's group is in G' }{
-      add r into the sp's group
-    }{
-      create sp's group in G' for this time period, add r
-    }
-   }
-  }
- }
+ %create a container G' for grouping requests intersected with switch-port pair in their sharing time period \\
+% \For{each group g in G}{
+%  \For{each request r in g}{
+%   \For{ each switch-port pair sp in the route of r }{
+%    \eIf{ sp's group is in G' }{
+%      add r into the sp's group
+%    }{
+%      create sp's group in G' for this time period, add r
+%    }
+%   }
+%  }
+% }
  
- Initialize the result vector RV, \\
- Set up the optimization goal, which is to maximize:\\
-  $$ V((x_{1}, x_{2}, x_{3}, ...,x_{n}) = \sum_{i=1}^{n} x_{i} * R_{i}.value$$
+% Initialize the result vector RV, \\
+% Set up the optimization goal, which is to maximize:\\
+%  $$ V((x_{1}, x_{2}, x_{3}, ...,x_{n}) = \sum_{i=1}^{n} x_{i} * R_{i}.value$$
+% 
+% Set up the constrans : \\
+% \For{each switch-port pair sp in each g' in G'}{
+%   $$ \sum_{i=1}^{n} x_{i'} * R_{i'}.min_bandwidth < sp.remainRate $$
+% }
  
- Set up the constrans : \\
- \For{each switch-port pair sp in each g' in G'}{
-   $$ \sum_{i=1}^{n} x_{i'} * R_{i'}.min_bandwidth < sp.remainRate $$
- }
- 
-\end{algorithm}
+%\end{algorithm}
 
 
 

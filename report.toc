@@ -21,12 +21,12 @@
 \contentsline {subsubsection}{\numberline {5.3.1}Implemented Strategies}{8}
 \contentsline {subsubsection}{\numberline {5.3.2}Envisioned Strategies}{9}
 \contentsline {section}{\numberline {6}IMPLEMENTATION DETAILS}{9}
-\contentsline {section}{\numberline {7}EVALUATION}{10}
+\contentsline {section}{\numberline {7}EVALUATION}{9}
 \contentsline {section}{\numberline {8}DISCUSSION AND FUTURE WORK}{10}
-\contentsline {subsection}{\numberline {8.1}Stability Issues}{10}
+\contentsline {subsection}{\numberline {8.1}Stability Issues}{11}
 \contentsline {subsection}{\numberline {8.2}More Tests and immigrate to real world test bed}{11}
-\contentsline {subsection}{\numberline {8.3}Support of Partial Bidding Request}{12}
-\contentsline {subsection}{\numberline {8.4} Request Translation}{12}
+\contentsline {subsection}{\numberline {8.3}Support of Partial Bidding Request}{11}
+\contentsline {subsection}{\numberline {8.4} Request Translation}{11}
 \contentsline {subsection}{\numberline {8.5} Request Predication}{12}
 \contentsline {section}{\numberline {9}RELATED WORK AND COMPARISON}{12}
 \contentsline {section}{\numberline {10}CONCLUSION}{13}
