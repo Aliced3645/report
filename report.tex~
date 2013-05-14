@@ -77,12 +77,12 @@ work which would be done in the future. And in section 8 we discuss some related
 \section{KEYWORDS \& CATEGORIES}
 Data-center, Network Resource Allocation, Marketing and Auction, Software Defined Network.
 
-
-
 \section{BACKGROUND}
-In this section, we investigate     existing data centers (mainly private data-centers and public data-centers) and their marketing and 
-pricing models. Also, we introduce the existing techniques of SDN which is the base of our system.
-\subsection{Data-center Markets}
+In this section, we investigate existing data centers (mainly private data-centers and public data-centers) and their marketing and 
+pricing models. Also, we introduce the existing techniques of SDN which is the base of our system. These investigations essentially
+inspired our idea of this project.
+
+\subsection{Datacenter Markets}
 There are generally two types of data centers, one is for-profit, public cloud data-centers, such as Amazon Web Services\cite{aws}, the other is private cloud
 data-centers, like those operated by Google or Facebook. Although auction mechanisms could be applied to both, different scenarios results in diverse answers because of 
 their business models.  Although most of the models applies in computation and storage marketing, they serve the same principle for our Network Allocation System.
@@ -131,14 +131,17 @@ prices for parameters.
 
 
 \subsection{Software Defined Network}
-\subsubsection{OpenFlow}
-The very novel idea of Software Define Network was originally proposed by \cite{Greenberg_abstracta}. OpenFlow is one of the most popular and mature specifications for software defied network currently existing.  It is now   under actively development by the Stanford Openflow team and a very active  community.
-OpenFlow primarily defines the control plane of the network. The core idea is that one or more central controllers are in charge of setting up forwarding rules in switches at the granularity of flows. A flow could be any set of packets that share some particular characteristics,i.e. source IP or destination port number. Packets matching a flow will be delivered by the switch according  to the flow rules, packets belongs to no flows will be forwarded to switches, The switches then will analyze the packet, determine the forwarding rules of this and similar packets.
-OpenFlow does not require major changes to existing switches. Large portions of existing switches can support OpenFlow with proper firmware updates, and most of the switches vendors are now adding support for OpenFlow as a standard.
-\subsubsection{Floodlight}
-With OpenFlow as the foundation, several Openflow Controllers were deigned and implemented, including NOX, Nettle and Floodlight. Floodlight was originally developed by and has become one of most supported and widely used in both academia and industrial. Flooldlight is written in JAVA and highly Object Oriented.
-Floodlight provides REST APIs for network administrator to take control of the network in the way OpenFlow provides. Meanwhile for developers, floodlight provides a plug and play fashion for them to 
-add modules into the controller and add work flows. The controller side of SDN$^{2}$ system is implemented via the interfaces and rules Floodlight provides.
+% software defined network and participatory network , a central view and participants
+While the data-centers technology evolves rapidly, \textbf{Software Defined Network (SDN)} has also been proposed as a
+stunning idea. By separating the control panel and the data panel, SDN   abstracts a supported network to be a networking system, which
+offers a central view of the networks as a graph and provides a central controller based on flows.
+Openflow is a dominating protocol used in SDN based Network systems which defines what is analog to the lower level API in an operating systems.
+And high level Networking systems such as NOX\cite{nox} and Floodlight\cite{floodlight}, and Nettle\cite{nettle} have been developed based on Openflow. SDN and
+Network systems has been actively developed in many universities. Companies such as Big Switch and JUNIPER have long 
+started to build SDN supported switches. It is believed that the future of network belongs to SDN. In this paper, we also take SDN as the approach towards the effective allocation of Network resources in data-centers. Recently Andrew et al' proposed \textbf{Participatory Networking(PNAE)}\cite{andrew}, 
+which focuses on the collection of participating entities.  Pane provides serves    analog to the system calls to networking systems, which 
+allow the  participating entities to provides hints to network systems and make changes to benefit their needs within allowed privileges.
+PANE' structure  nicely forms the base of our allocation mechanism.  None of the  systems aforementioned utilize a central view of the network, thus we argue that our approach comes with naturally more potential. In  fact, only our system supports seamless switch between strategies and this feature comes naturally with the sets up. 
 
 
 \section{CONTRIBUTION}
@@ -147,7 +150,7 @@ Also, our system could reach the performance requirement of real-time allocation
 % what is new ?
 %sdn
 \subsection{Floodlight and SDN based}
-Our work is mounted on Floodlight as its basement. With relatively mutual developed system, Flood light and
+Our work is mounted on Floodlight as its basement. With relatively mutual developed system, Floodlight and
 can be utilized in real world with few set ups thus make deployment of our project easier.
 
 
@@ -501,7 +504,7 @@ whether or not to accept their requests. Presented as: $$(x_{1}, x_{2}, x_{3}, .
 
 \section{IMPLEMENTATION DETAILS}
 Our prototype system is consisted of two programs, one resides in the FloodLight and another is the bidding agent we build in Python. There are roughly 
-6000 lines of Java code and 500 lines of Python code. The low level marketing controller is a Floodlight Listener listening for any PACKET\_IN messages.
+6000 lines of Java code and 500 lines of Python code. The low level marketing controller is a Floodlight listener listening for any PACKET\_IN messages.
 In order to let our special bidding packet with special IP to be transferred to the listener, we modified the floodlight controller (implementation 
 of IFloodlightProvider) to let it not filter out the bidding mesasge packets. The route is presented by the Floodlight as a list of switch-port pairs,
 and Floodlight provides an interface to list all possible routes between any two switches, so an additional hashmap should be used to recordthe host machiens
@@ -632,8 +635,6 @@ either not able to or no bother to. Thus a great break through that will benefit
 people are trying to tackle(example ref paper), and its advance could benefit not only our data-centers marketing system but also many 
 other existing systems. But as aforementioned, it is generally very hard to achieve in current state of art.
 
-
-
 \section{RELATED WORK AND COMPARISON}
 Data-centers have rapidly evolved to become the dominating server style in almost
 any modern Internet based organizations. As the amount of computation and associated
@@ -646,7 +647,7 @@ A web search engine clusters such as Google may want to response to a request
 within a relatively rapid time. All of the needs are to be solved with appropriate network resources
 allocation.
 
-% enormous number  of papers have discussed the resource allocation in clusters,
+% enormous number of papers have discussed the resource allocation in clusters,
 % regarding the computation resource, few on NETwork 
 Allocating \textbf{computing and storage} resources such as Cpus and Memory
  in clusters and date-centers has been a popular topic widely discussed. Researchers have proposed and implemented
@@ -656,7 +657,7 @@ Rajkumar Buyya el at' \cite{Rajkumar} proposed architecture for market-oriented 
 resources within Clouds that encompass both customer-driven service management 
 and computational risk management to sustain SLA-oriented resource allocation. 
 
-Artur   Czumaj el at'\cite{Artur} proposed  the first thorough theoretical study of the
+Artur Czumaj el at'\cite{Artur} proposed  the first thorough theoretical study of the
 price of selfish routing in server farms for general cost function, giving the hypothesis that 
 distributed entities in data-centers are selfishly motivated.  
 Ali Ghodsi el at\cite{Ali} presented fair allocation regarding dominant resources of multiple types
@@ -664,7 +665,7 @@ in a data center clusters.
 Sai Rahul Reddy P\cite{Sai} in his Master's thesis proposed combined time and budget optimized auction 
 algorithms in grid computing. 
 
-However, there exists very few research focusing on the allocation
+However, there exists very few research focusing on the allocation 
 of \textbf{network} resources. We believe the allocation on \textbf{network} resources such as guaranteed bandwidth and 
 latency are as important as the allocation of computing and memory resources. Computation and storage are not free
 thus are entitled to allocation based on market mechanism, so is network resources. This is actually intuitive 
@@ -681,17 +682,6 @@ allocation of network resources often requires orders of  magnitude faster than 
 systems due to the fast nature of network transmission.  Thus regarding the allocation resource type, our system is very different but necessary.    
 
 
-% software defined network and participatory network , a central view and participants
-While the data-centers technology evolves rapidly, \textbf{Software Defined Network (SDN)} has also been proposed as a
-stunning idea. By separating the control panel and the data panel, SDN   abstracts a supported network to be a networking system, which
-offers a central view of the networks as a graph and provides a central controller based on flows.
-Openflow is a dominating protocol used in SDN based Network systems which defines what is analog to the lower level API in an operating systems.
-And high level Networking systems  such as NOX\cite{nox} and Floodlight\cite{floodlight}, and Nettle\cite{nettle} have been developed based on Openflow. SDN and
-Network systems has been actively developed in many universities. Companies such as Big Switch and JUNIPER have long 
-started to build SDN supported switches. It is believed that the future of network belongs to SDN. in this paper, we also take SDN as the approach towards the effective allocation of Network resources in data-centers. Recently Andrew et al' proposed 	\textbf{Participatory Networking(PNAE)}\cite{andrew}, 
-which focuses on the collection of participating entities.  Pane provides serves    analog to the system calls to networking systems, which 
-allow the  participating entities to provides hints to network systems and make changes to benefit their needs within allowed privileges.
-PANE' structure  nicely forms the base of our allocation mechanism.  None of the  systems aforementioned utilize a central view of the network, thus we argue that our approach comes with naturally more potential. In  fact, only our system supports seamless switch between strategies and this feature comes naturally with the sets up. 
 
 \section{CONCLUSION}
 
@@ -699,11 +689,6 @@ This project is so awesome, shu and ray are so great, please give us A. thanks. 
 
 \section{ACKNOWLEDGMENT}
 Thanks Andrew Forguson and Rodrigo Fonseca. Special thanks to silao, who ate my sushi.
-
-
-
- 
-
 
 \begin{thebibliography}{99}
   \bibliographystyle{unsrt} 

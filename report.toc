@@ -1,21 +1,19 @@
 \contentsline {section}{\numberline {1}INTRODUCTION}{2}
 \contentsline {section}{\numberline {2}KEYWORDS \& CATEGORIES}{3}
 \contentsline {section}{\numberline {3}BACKGROUND}{3}
-\contentsline {subsection}{\numberline {3.1}Data-center Markets}{3}
+\contentsline {subsection}{\numberline {3.1}Datacenter Markets}{3}
 \contentsline {subsection}{\numberline {3.2}Existing Pricing Mechanisms}{3}
 \contentsline {subsubsection}{\numberline {3.2.1}Public Cloud Pricing}{4}
 \contentsline {subsubsection}{\numberline {3.2.2}Private Cloud Pricing}{4}
 \contentsline {subsection}{\numberline {3.3}Software Defined Network}{4}
-\contentsline {subsubsection}{\numberline {3.3.1}OpenFlow}{4}
-\contentsline {subsubsection}{\numberline {3.3.2}Floodlight}{4}
-\contentsline {section}{\numberline {4}CONTRIBUTION}{5}
+\contentsline {section}{\numberline {4}CONTRIBUTION}{4}
 \contentsline {subsection}{\numberline {4.1}Floodlight and SDN based}{5}
 \contentsline {subsection}{\numberline {4.2}Marketing Fairness }{5}
 \contentsline {subsection}{\numberline {4.3}Solve Fast}{5}
 \contentsline {subsection}{\numberline {4.4}Extendable Strategies}{5}
 \contentsline {section}{\numberline {5}SYSTEM DESIGN AND ALGORITHMS}{5}
 \contentsline {subsection}{\numberline {5.1}Pre-Assumption}{5}
-\contentsline {subsection}{\numberline {5.2}Design and Architecture}{6}
+\contentsline {subsection}{\numberline {5.2}Design and Architecture}{5}
 \contentsline {subsubsection}{\numberline {5.2.1}The Bidding Protocol}{7}
 \contentsline {subsubsection}{\numberline {5.2.2}Marketing Manager}{7}
 \contentsline {subsubsection}{\numberline {5.2.3}User side bidding agent}{8}
