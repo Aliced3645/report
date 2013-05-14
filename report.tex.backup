@@ -12,12 +12,9 @@
 \definecolor{mauve}{rgb}{0.58,0,0.82}
 \usepackage {algorithm2e} 
 
-
-
 \begin{document}
 
 \tableofcontents
-
 
 \title{SDN$^{2}$: Marketing System for Data-center Network Resource Allocation based on Software Defined Network}
 \author{Rui Zhou \and Shu Zhang}
@@ -329,7 +326,10 @@ In our system, the marketing manager can utilize different strategies to selecti
 
 \subsubsection{Implemented Strategies}
 
-We have successfully implemented three strategies: first come and first serve, income and utilization index(formally called estimated index), and utilization index. Our evaluation shows that our income and utilization index can achieve significant better performance regarding the combination utilization and income comparing to the very natural first come first serve model which is sort of the standard naive philosophy to allocate network resources. Here is a algorithm   illustrating the algorithm we developed to provide the income-utilization index of a route: 
+We have successfully implemented three strategies: first come and first serve, income and utilization index(formally called estimated index), 
+and utilization index. Our evaluation shows that our income and utilization index can achieve significant better performance regarding the
+ combination utilization and income comparing to the very natural first come first serve model which is sort of the standard naive philosophy 
+to allocate network resources. Here is the algorithm we developed to provide the income-utilization index of a given route: 
 
 \providecommand{\SetAlgoLined}{\SetLine}
 \providecommand{\DontPrintSemicolon}{\dontprintsemicolon}
@@ -337,7 +337,6 @@ We have successfully implemented three strategies: first come and first serve, i
 \begin{algorithm}[H]
 \caption{Income-Utilization Index Calculation}
 
-% \DontPrintSemicolon
 \SetAlgoLined
  \KwData{Desired Allocation alloc which contains the bandwidth information, Route rt, which is essentially a collection of switch ports}
  \KwResult{Income-utilization Index of  rt}
@@ -351,10 +350,9 @@ We have successfully implemented three strategies: first come and first serve, i
    price+=queuePrice\;
   }
  }
-index=alloc.moneyWillingToPay/price\;
+  index=alloc.moneyWillingToPay/price\;
 return index\;
 \end{algorithm}
-
 
 Each routes in collected in a bidding round thus is indexed and sorted, we then go over the list from highest index to lowest index, trying to satisfy as many routes as we can in that order.
 Although no formal mathematical proof is provided, we take the  intuition that this approach encourages users to bid for the less contingent areas of the network at a granularity of switch ports, but also allows user to pay more and make reservation on bottleneck links. Our later evaluation section will show that this algorithms works well in practice.
@@ -364,30 +362,51 @@ If we change the  molecular in the equation of computing the Income-Utilization 
 
 
 \subsubsection{Envisioned Strategies}
-We have some envisioned strategies that we did not have the time to implemented, one of them is indeed seeking for the optimal income, as decribed as following :
+We have some envisioned strategies that we did not have the time to implemented, 
+one of them is indeed seeking for the optimal income in a strict way, some packages like SuanShu and CPLEX 
+could help we put it into code into near future, the algorithm is decribed as following :
+
+
 
 \providecommand{\SetAlgoLined}{\SetLine}
 \providecommand{\DontPrintSemicolon}{\dontprintsemicolon}
 \vspace{5mm}
 \begin{algorithm}[H]
-\caption{TBA TBA TBA TBA TBA}
 
 % \DontPrintSemicolon
 \SetAlgoLined
- \KwData{Desired Allocation alloc which contains the bandwidth information, Route rt, which is essentially a collection of switch ports}
- \KwResult{Income-utilization Index of  rt}
- price=0\;
- \For{each switch port p in rt}{
-  bandwitdthPrice= alloc.bandwidth/p.leftOverBandwidth\;
-  queuePrice= 1/p.numOfLeftOverQueues\;
-  \eIf{bandwidthPrice$>$queuePrice}{
-   price+=bandwidthPrice\;
-   }{
-   price+=queuePrice\;
+ \KwData{Bidding requests received for a typical auction round, presented by a vector R:
+ $$( R_{1} ,R_{2} ,R_{3},...,R_{n} )$$}
+ \KwResult{A corresponding vector with each member a binary value indicating for each bidding request 
+whether or not to accept their requests. Presented as: $$(x_{1}, x_{2}, x_{3}, ...,x_{n})$$ }
+ 
+ \For{each request in the request vector}{
+    rank request by their starting time, get the modified reqeust vector R':
+     $$( R_{1'} ,R_{2'} ,R_{3'},...,R_{n'} )$$
+ }
+
+\end{algorithm}
+
+\begin{algorithm}[H]
+\caption{Imcome Optimization Algorithm (2)}
+ Create G as the container is used to store all requests with overlapped request time period \\
+
+ \For{each request r in R'}{
+  \For{each request r' in requests other than r in R'}{
+    \If{ r'.startTime $<$ r.endTime}{
+     group r' into r's time intersection group g
+    }
+  }
+  add g into G
+ }
+
+ \For{each group g in G}{
+  \For{each request r in g){
+   \For{ each switch-port pair sp in the route of r }{
+    \eIf{ sp is in 
+   }
   }
  }
-index=alloc.moneyWillingToPay/price\;
-return index\;
 \end{algorithm}
 
 
@@ -531,6 +550,7 @@ We call it complex because it contains a circle and a line.
 \centering
 \includegraphics[width=90mm]{mytopo_utilization.png}
 \caption{The utilization comparison in complex topology}
+The aggressiveness of FCFS is very vbvious, and FCFS appreantly does not do well regarding the long run.
 \label{overflow}
 \end{figure}
 
@@ -603,8 +623,7 @@ other existing systems. But as aforementioned, it is generally very hard to achi
 
 
 
-\section{RELATED WORK}
- market is needed in resource allocation,too
+\section{RELATED WORK AND COMPARISON}
 Data-centers have rapidly evolved to become the dominating server style in almost
 any modern Internet based organizations. As the amount of computation and associated
 network  traffic keeps increasing, the needs for efficient and fair  allocation in  Network resources
@@ -619,13 +638,14 @@ allocation.
 
 % enormous number  of papers have discussed the resource allocation in clusters,
 % regarding the computation resource, few on NETwork 
-To eliminating possible confusion, allocating \textbf{computing and storage} resources such as Cpus and Memory
+Allocating \textbf{computing and storage} resources such as Cpus and Memory
  in clusters and date-centers has been a popular topic widely discussed. Researchers have proposed and implemented
 various algorithms to achieve fairness and efficiency among different entities. 
 %{eaxmple papers} 
 Rajkumar Buyya el at' \cite{Rajkumar} proposed architecture for market-oriented allocation of 
 resources within Clouds that encompass both customer-driven service management 
 and computational risk management to sustain SLA-oriented resource allocation. 
+
 Artur   Czumaj el at'\cite{Artur} proposed  the first thorough theoretical study of the
 price of selfish routing in server farms for general cost function, giving the hypothesis that 
 distributed entities in data-centers are selfishly motivated.  
@@ -633,9 +653,10 @@ Ali Ghodsi el at\cite{Ali} presented fair allocation regarding dominant resource
 in a data center clusters.
 Sai Rahul Reddy P\cite{Sai} in his Master's thesis proposed combined time and budget optimized auction 
 algorithms in grid computing. 
+
 However, there exists very few research focusing on the allocation
 of \textbf{network} resources. We believe the allocation on \textbf{network} resources such as guaranteed bandwidth and 
-jitters are as important as the allocation of computing and memory resources. Computation and storage are not free
+latency are as important as the allocation of computing and memory resources. Computation and storage are not free
 thus are entitled to allocation based on market mechanism, so is network resources. This is actually intuitive 
 and commonly accepted patterns in real life. Phone carries would sell you a phone for very cheap price and make 
 benefits from cellular services, this is a typical example in which the importance of allocation of network resource
@@ -647,7 +668,7 @@ to reach due to the distributed nature of inter connected systems, which lacks o
 a overview for the entire network and the needs of each entities are not really be collected and analyzed to form a strategy. The entire network also do not seek to optimize anything in general.
 It would be great if we can have a central view of the network which contact with each participating hosts in the network and allocate resources to them efficiently. Note that
 allocation of network resources often requires orders of  magnitude faster than allocation resources in Map-reduce style 
-systems due to the fast nature of network transmission.     
+systems due to the fast nature of network transmission.  Thus regarding the allocation resource type, our system is very different but necessary.    
 
 
 % software defined network and participatory network , a central view and participants
@@ -660,15 +681,11 @@ Network systems has been actively developed in many universities. Companies such
 started to build SDN supported switches. It is believed that the future of network belongs to SDN. in this paper, we also take SDN as the approach towards the effective allocation of Network resources in data-centers. Recently Andrew et al' proposed 	\textbf{Participatory Networking(PNAE)}\cite{andrew}, 
 which focuses on the collection of participating entities.  Pane provides serves    analog to the system calls to networking systems, which 
 allow the  participating entities to provides hints to network systems and make changes to benefit their needs within allowed privileges.
-PANE' structure  nicely forms the base of our allocation mechanism. 
+PANE' structure  nicely forms the base of our allocation mechanism.  None of the  systems aforementioned utilize a central view of the network, thus we argue that our approach comes with naturally more potential. In  fact, only our system supports seamless switch between strategies and this feature comes naturally with the sets up. 
 
 \section{CONCLUSION}
 
-It should be easy to write your report in LaTeX, and it's a great tool
-to learn. It almost certainly came with your Linux installation, and
-can be very easily installed in Cygwin and on the Mac (through the
-excellent MacTeX distribution).
-
+This project is so awesome, shu and ray are so great, please give us A. thanks
 
 \section{ACKNOWLEDGMENT}
 Thanks Andrew Forguson and Rodrigo Fonseca. Special thanks to silao, who ate my sushi.
@@ -686,9 +703,8 @@ Thanks Andrew Forguson and Rodrigo Fonseca. Special thanks to silao, who ate my 
  \bibitem{ec2} http://aws.amazon.com/ec2/pricing.
  \bibitem{spot} http://aws.amazon.com/ec2/spot-instances.
  \bibitem{mininet} http://mininet.org.
-\bibitem{Greenberg_abstracta}Albert Greenberg and Gisli Hjalmtysson and David A. Maltz and Andy Myers and Jennifer Rexford and Geoffrey Xie and Hong Yan and Jibin Zhan and Hui Zhang,
+ \bibitem{Greenberg_abstracta}Albert Greenberg and Gisli Hjalmtysson and David A. Maltz and Andy Myers and Jennifer Rexford and Geoffrey Xie and Hong Yan and Jibin Zhan and Hui Zhang,
      ``ABSTRACT A Clean Slate 4D Approach to Network Control and Management''
-
  \bibitem{onix} Koponen, Teemu, et al. "Onix: a distributed control platform for large-scale production networks." Proceedings of the 9th USENIX conference on Operating systems design and implementation. USENIX Association, 2010.
  \bibitem{openflow} McKeown, Nick, et al. "OpenFlow: enabling innovation in campus networks." ACM SIGCOMM Computer Communication Review 38.2 (2008): 69-74.
  \bibitem{google} Stokely, Murray, et al. "Using a market economy to provision compute resources across planet-wide clusters." Parallel \& Distributed Processing, 2009. IPDPS 2009. IEEE International Symposium on. IEEE, 2009.
@@ -698,7 +714,18 @@ Thanks Andrew Forguson and Rodrigo Fonseca. Special thanks to silao, who ate my 
  \bibitem{second price} Vickrey, William. "Counterspeculation, auctions, and competitive sealed tenders." The Journal of finance 16.1 (1961): 8-37.
  \bibitem{clock1} Ausubel, Lawrence M., and Peter Cramton. "Auctioning many divisible goods." Journal of the European Economic Association 2.23 (2004): 480-493.
  \bibitem{clock2} Cramton, Peter, and Lawrence M. Ausubel. "The clock-proxy auction: A practical combinatorial auction design." (2006): 115-138.
- 
+ \bibitem{Rajkumar} Buyya, Rajkumar, Chee Shin Yeo, and Srikumar Venugopal. "Market-oriented cloud computing: Vision, hype, and reality for delivering it services as computing utilities." High Performance Computing and Communications, 2008. HPCC'08. 10th IEEE International Conference on. Ieee, 2008.
+ \bibitem{Artur} Czumaj, Artur, Piotr Krysta, and Berthold Vöcking. "Selfish traffic allocation for server farms." Proceedings of the thiry-fourth annual ACM symposium on Theory of computing. ACM, 2002.
+ \bibitem{Ali} Ghodsi, Ali, et al. "Dominant resource fairness: fair allocation of multiple resource types." USENIX NSDI. 2011.
+ \bibitem{Sai} Reddy, Sai Rahul. "Market economy based resource allocation in grids." Master's thesis, Indian Institute of Technology, Kharagpur, India (2006).
+ \bibitem{Mohammad} Alizadeh, Mohammad, et al. "Data center tcp (dctcp)." ACM SIGCOMM Computer Communication Review 40.4 (2010): 63-74.
+ \bibitem{sdn} McKeown, Nick. "Software-defined networking." INFOCOM keynote talk, Apr (2009).
+ \bibitem{nox} Gude, Natasha, et al. "NOX: towards an operating system for networks." ACM SIGCOMM Computer Communication Review 38.3 (2008): 105-110.
+ \bibitem{frenetic} Foster, Nate, et al. "Frenetic: A network programming language." ACM SIGPLAN Notices 46.9 (2011): 279-291.
+ \bibitem{nettle} Voellmy, Andreas, and Paul Hudak. "Nettle: Taking the sting out of programming network routers." Practical Aspects of Declarative Languages. Springer Berlin Heidelberg, 2011. 235-249.
+ \bibitem{andrew} Ferguson, Andrew D., et al. "Participatory networking." Proc. Hot-ICE 12 (2012).
+ \bibitem{bob} fairness paper
+
 \end{thebibliography}
 
 
