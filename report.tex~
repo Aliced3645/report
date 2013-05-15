@@ -145,12 +145,12 @@ PANE' structure  nicely influenced the base of our allocation mechanism.  By sel
 
 
 \section{CONTRIBUTION}
-Our contribution is mainly the construction of a marketing prototype over SDN supporting various allocating algorithms.
-Also, our system could reach the performance requirement of real-time allocation, and supports further extension.
+Our contribution is mainly the construction of a prototype of Network Resource Allocation System    over SDN supporting various marketing strategies.
+Our prototype system can  achieve the performance requirements of real-time allocation, and has the potential to support  many further extensions.
 % what is new ?
 %sdn
 \subsection{Floodlight and SDN Based}
-Our work is mounted on Floodlight as its basement. With relatively mature developed system, Floodlight and
+Our work is mounted on Floodlight as its basement. With relatively mature developed system, Floodlight  
 can be utilized in real world with few set ups thus make the deployment of our project easier.
 
 
@@ -160,8 +160,8 @@ can be utilized in real world with few set ups thus make the deployment of our p
 \subsection{Marketing Fairness  }
 Bob Briscoe in his paper\cite{bob} has bluntly pointed out that many fairness based on flows are pointless. He argues that
  flows are simply not the right
-entities to provide fairness to. We believe in his argument, but it is also arguable that sometimes fairness over flows
-can have its usages. We do not want to get in to more details about fairness in current stage. However,
+entities to provide fairness to. We are influenced by his argument, but it is also arguable that sometimes fairness over flows
+can have its usages. We do not want to get in to more details about fairness at current stage. However,
 % Algorithms such as max-min flow generally works well and many people are used to it. In our
 % work, the total amount of virtual currency/cash  available in our market mechanism resource allocation system at a 
 % particular time period is proportional to the existing resources available in that  particular period ,by the 
@@ -174,26 +174,26 @@ can have its usages. We do not want to get in to more details about fairness in 
 % among this  giant flow and others to achieve the maximum usage for all time over the entire system. Weights between users and flows can be 
 % maintained by adjusting the distribution of virtual cash. Every user has equal amount of virtual cash in a evenly 
 % weighted system and the properties of strategy-proof and envy free are automatically granted.
-a great benefits that we obtain from utilizing auction based Network resource allocation is that the fairness issue is no longer so relevant. It is up to the user to reserve and use the network resources. The Auctioneer treats everyone equally as they all have to bid. At least the users feel fair, just like bidding in the real world.
+a great benefits that we obtain from utilizing auction based Network resource allocation is that the fairness issue is no longer so relevant. It is up to the user to reserve and use the network resources with their budget. The Auctioneer treats everyone equally as they all have to bid. At least the users feel fair, just like bidding for any other goods in the real world.
 
 
 
 %speed -> search
 \subsection{Solve Fast}
 Different from allocation for computing and storage resources, the allocation for Network resources requires a much high 
-decision speed due to the natural of network administration. In \cite{Sai}, Sai proposed the pattern for agents to keep bidding and potentially face the failure. This works in computation and storage allocation but is probably not the best strategy in the design of our system, as utilization and speed is also what we care most.
+decision speed due to the natural of network administration. In \cite{Sai}, Sai proposed the pattern for agents to keep bidding and potentially face continuous failures. This works in computation and storage allocation but is probably not the best strategy in the design of our system, as utilization and speed is also what we care most.
 % In our work, we had a close look at ideas in logical programming
 % and tries to seize the best out of it. Our system primarily operates as tree search in a solution space composed
 % with users' bids are our search are target to optimize a ``profit'' of certain kinds. There isn't much bidding failures
 % in our system. The amount of virtual cash a bidder spends mainly affect the priority of their resource allocation. 
-In our work, other than the adjustable time needed to gather the requests for a bidding round, our controller can choose to utilize algorithms and strategies that compute fast and obtain a solution that may not be optimal but good enough and satisfies as many requests as possible. The Income-Utilization Strategy we implemented is  $o(nlogn)$ in time complexity and linear in space thus can produce allocation really fast. Some of the computation such as latency validation of requests can even be done in parallel while the system is gathering bids. Thus we argue that given proper strategies, our system is scalable and fast. In addition, we suggest to use algorithms that focus on both income and utilization. Our Income-Utilization Index Strategy is a simple example that tries to achieve such goal.
+In our work, other than the adjustable time needed to gather the requests for a bidding round, our controller can choose to utilize algorithms and strategies that compute fast and obtain a solution that may not be optimal but good enough and satisfies as many requests as possible. The Income-Utilization Strategy we implemented is  $o(nlogn)$ in time complexity and linear in space thus can produce allocation really fast. Some of the computation such as latency validation of requests can always be done in parallel while the system is gathering bids. Thus we argue that given proper strategies, our system is scalable and fast. In addition, we suggest to use algorithms that focus on both income and utilization. Our Income-Utilization Index Strategy is a simple example that tries to achieve such goal.
 % In our observation, the major delay before the bidder could use the network would be the time needed 
 
 
 \subsection{Plugable Strategies}
-Strategies are nothing special but plug-gable modules that can be switched immediately. Although few strategies have been implemented,  
-Our system could potentially support multiple optimizing modes including : ``Short job first''. ``Maximun profits'', ``best utilization'',
-``most met deadlines'' and so on. It is up to the system manager to decide what to use. It would not be difficult in the future to category users into different strategies groups either.
+Strategies are nothing special but plug-gable modules that can be switched immediately in SDN$^2$. Although few strategies have been implemented,  
+Our system could easily support multiple optimizing modes including : ``Short job first''. ``Maximun profits'', ``best utilization'',
+``most met deadlines'' and so on. It is up to the system manager to decide what to use. It also would not be difficult in the future to category users into different strategies groups and have the bid separately either.
 
 
 \section{SYSTEM DESIGN AND ALGORITHMS}
@@ -321,11 +321,9 @@ their IP address to see whether they are bidding messages. Another is that the u
 manipulate all fields of the packet. 
 
 \subsection{Auction Strategies}
-
 In our system, the marketing manager can utilize different strategies to selectively satisfy the bidding requests. The bidding strategies are essentially moduli-zed parts that can be easily selected and loaded. In this section we talk about several related strategies.
 
 \subsubsection{Implemented Strategies}
-
 We have successfully implemented three strategies: first come and first serve, income and utilization index(formally called estimated index), 
 and utilization index. Our evaluation shows that our income and utilization index can achieve significant better performance regarding the
  combination of utilization and income comparing to the very natural first come first serve model which is sort of the standard naive philosophy 
@@ -558,7 +556,7 @@ while achieves significant better income/utilization rate. Figures 6-14 show the
 \centering
 \includegraphics[width=70mm]{circle.png}
 \caption{Circle Topology}
-``The Ring''
+``The Diver''
 \label{overflow}
 \end{figure}
 
@@ -582,6 +580,8 @@ We call it complex because it contains a circle and a line.
 \centering
 \includegraphics[width=90mm]{line_utilization.png}
 \caption{The utilization comparison in line topology}
+
+The aggressiveness of FCFS is very obvious, and FCFS eventually does not do well regarding the long run.
 \label{overflow}
 \end{figure}
 
@@ -712,7 +712,7 @@ Regarding the previous discussion, our system is a very different and necessary 
 
 \section{CONCLUSION}
 
-In this Article, we studied existing marketing and pricing schemes utilized in data-centers, and then presented SDN$^2$, the system we built to enable auction for network resource allocation. Although SDN$^2$ is still a  nascent prototype, it provides a great start point and an extensible platform. We believe that with a few further development SDN$^2$ could be soon utilized in real world and provide its values to data-center resource management.
+In this article, we studied existing marketing and pricing schemes utilized in data-centers, and then presented SDN$^2$, the system we built to enable auction for network resource allocation. Although SDN$^2$ is still a  nascent prototype, it provides a great start point and an extensible platform. We believe that with a few further development, SDN$^2$ could be soon utilized in real world and provide its values to data-center resource management, and well complete the missing part of current marketing based resource allocation systems in data-centers. 
 
 \section{ACKNOWLEDGMENT}
 Thanks to Andrew Ferguson and Rodrigo Fonseca, who have provided great help through the entire project.
